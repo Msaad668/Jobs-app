@@ -13,7 +13,6 @@ const Home = () => {
           }}
         >
           <div class="input-field col s6 ">
-            <input value="" id="first_name2" type="text" class="validate " />
             <label
               class="active"
               style={{ fontSize: "1.5rem" }}
@@ -21,6 +20,7 @@ const Home = () => {
             >
               search for a job
             </label>
+            <input value="" id="first_name2" type="text" class="validate " />
           </div>
         </div>
       </div>
