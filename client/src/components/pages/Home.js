@@ -2,28 +2,17 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="home-page">
-      <div className="container">
-        <div
-          class="row"
-          style={{
-            paddingTop: "40vh",
-
-            margin: "auto",
-          }}
-        >
-          <div class="input-field col s6 ">
-            <label
-              class="active"
-              style={{ fontSize: "1.5rem" }}
-              htmlFor="search"
-            >
-              search for a job
-            </label>
-            <input value="" id="first_name2" type="text" class="validate " />
-          </div>
-        </div>
-      </div>
+    <div class="jumbotron">
+      <h1 class="display-4">Jobs Portal</h1>
+      <p class="lead">
+        this is the jobs portal app, will help you find your match job have fun
+        !!!
+      </p>
+      <hr class="my-4" />
+      <p>have a look on all jobs, maybe you'll find what interests you</p>
+      <a class="btn btn-primary btn-lg" href="#" role="button">
+        see all Jobs
+      </a>
     </div>
   );
 };
