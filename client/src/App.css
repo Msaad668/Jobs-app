@@ -44,3 +44,24 @@
 .nav-item {
   margin-right: 2rem;
 }
+
+/* card */
+
+.card {
+  margin: 3%;
+  background: #1a1a1d;
+  color: white;
+  border-radius: 5px;
+}
+
+.search {
+  margin: 2.5rem 0rem;
+}
+
+.search-input {
+  margin-bottom: 1rem;
+}
+
+.search-button {
+  margin-bottom: 1rem;
+}
