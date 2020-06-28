@@ -2,14 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
-  user: {
+  company: {
     type: Schema.Types.ObjectId,
   },
   title: {
-    type: String,
-    required: true,
-  },
-  company: {
     type: String,
     required: true,
   },
@@ -17,7 +13,7 @@ const jobSchema = new Schema({
     type: String,
     required: true,
   },
-  url: {
+  jobUrl: {
     type: String,
   },
   skills: {

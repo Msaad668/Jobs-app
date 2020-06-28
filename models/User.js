@@ -14,10 +14,18 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  role: {
+  isCompany: {
+    type: Boolean,
+    default: false,
+  },
+  summary: {
     type: String,
-    enum: ["user", "employer"],
-    default: "user",
+  },
+  website: {
+    type: String,
+  },
+  address: {
+    type: String,
   },
   date: {
     type: Date,
