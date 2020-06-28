@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      <a class="navbar-brand" href="#">
+      <Link to="/" class="navbar-brand">
         <i className="fas fa-address-book" /> jobs Portal
-      </a>
+      </Link>
       <button
         class="navbar-toggler"
         type="button"
@@ -20,29 +21,34 @@ const Navbar = () => {
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Jobs <span class="sr-only">(current)</span>
-            </a>
+            <Link to="/" class="nav-link">
+              Home <span class="sr-only">(current)</span>
+            </Link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <Link class="nav-link" to="/jobs">
+              jobs
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link" to="/profile">
               Profile
-            </a>
+            </Link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <Link class="nav-link" to="/add-job">
               add job
-            </a>
+            </Link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <Link class="nav-link" to="/signin">
               sign in
-            </a>
+            </Link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <Link class="nav-link" to="/">
               sign out
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

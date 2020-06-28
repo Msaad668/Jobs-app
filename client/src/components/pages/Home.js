@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -10,12 +11,17 @@ const Home = () => {
           fun!
         </p>
 
-        <a class="btn btn-primary btn-lg" href="#" role="button">
+        <Link to="/jobs" class="btn btn-primary btn-lg" href="#" role="button">
           see all Jobs
-        </a>
-        <a class="btn btn-primary btn-lg" href="#" role="button">
+        </Link>
+        <Link
+          to="add-job"
+          class="btn btn-primary btn-lg"
+          href="#"
+          role="button"
+        >
           add new job
-        </a>
+        </Link>
       </div>
     </div>
   );
