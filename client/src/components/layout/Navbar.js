@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <a class="navbar-brand" href="#">
-        Navbar
+        <i className="fas fa-address-book" /> jobs Portal
       </a>
       <button
         class="navbar-toggler"
@@ -27,6 +27,11 @@ const Navbar = () => {
           <li class="nav-item">
             <a class="nav-link" href="#">
               Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              add job
             </a>
           </li>
           <li class="nav-item">

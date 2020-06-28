@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital@1&family=Roboto&display=swap");
+
+.jumbotron {
+  font-family: "Roboto", sans-serif;
+  background: #1a1a1d;
+  color: white;
+  height: 91vh;
+  margin-bottom: 0;
+  border-radius: 0%;
+}
+
+.home {
+  padding: 4% 10%;
+}
+
+.home h1 {
+  font-family: "Roboto", sans-serif;
+  margin: 3rem 0;
+}
+
+.home p {
+  font-size: 1.5rem;
+  margin: 3rem 0;
+}
+
+.home a {
+  margin: 1rem 3rem 1rem 0;
+}
+
+/* navbar */
+
+.navbar {
+  font-family: "Roboto";
+  height: 9vh;
+  font-size: 1.5rem;
+}
+
+.navbar a {
+  font-size: 1.5rem;
+}
+.navbar-nav {
+  margin-right: 1rem;
+}
+.nav-item {
+  margin-right: 2rem;
+}
