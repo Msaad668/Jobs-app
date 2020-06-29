@@ -60,10 +60,10 @@ router.post(
 
 // @route    GET api/jobs
 // @desc     Get all jobs
-// @access   Private
+// @access   public
 router.get("/", async (req, res) => {
   try {
-    const jobs = await Job.find().sort({ date: -1 });
+    const jobs = await Job.find().select("-applications").sort({ date: -1 });
     res.json(jobs);
   } catch (err) {
     console.error(err.message);
@@ -76,7 +76,7 @@ router.get("/", async (req, res) => {
 // @access   public
 router.get("/:id", checkObjectId("id"), async (req, res) => {
   try {
-    const job = await Job.findById(req.params.id);
+    const job = await Job.findById(req.params.id).select("-applications");
 
     if (!job) {
       return res.status(404).json({ msg: "job not found" });
@@ -274,5 +274,32 @@ router.delete("/unapply/:id/:application_id", auth, async (req, res) => {
     return res.status(500).send("Server Error");
   }
 });
+
+// @route    GET api/jobs/applications/:id
+// @desc     Get all applications for a job by jobID
+// @access   private
+router.get(
+  "/applications/:id",
+  [auth, checkObjectId("id")],
+  async (req, res) => {
+    try {
+      const job = await Job.findById(req.params.id);
+
+      if (!job) {
+        return res.status(404).json({ msg: "job not found" });
+      }
+
+      if (job.company.toString() !== req.user.id) {
+        return res.status(404).json({ msg: "not authorized" });
+      }
+
+      res.json(job.applications);
+    } catch (err) {
+      console.error(err.message);
+
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 module.exports = router;
