@@ -52,6 +52,11 @@ const UserSchema = new Schema({
       employerName: {
         type: String,
       },
+      status: {
+        type: String,
+        enum: ["In consideration", "not selected", "no action yet"],
+        default: "no action yet",
+      },
     },
   ],
   date: {

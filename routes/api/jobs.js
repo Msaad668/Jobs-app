@@ -215,6 +215,7 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
       application: job.applications[job.applications.length - 1].id,
       title: job.title,
       employerName: job.employerName,
+      status: job.applications[job.applications.length - 1].status,
     };
 
     user.jobsAppliedTo.unshift(newJobAppliedTo);

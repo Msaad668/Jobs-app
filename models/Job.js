@@ -32,12 +32,14 @@ const jobSchema = new Schema({
       name: {
         type: String,
       },
-      isConsidered: {
-        type: Boolean,
+      status: {
+        type: String,
+        enum: ["In consideration", "not selected", "no action yet"],
+        default: "no action yet",
       },
-      isViewed: {
-        type: Boolean,
-      },
+      // isViewed: {
+      //   type: Boolean,
+      // },
     },
   ],
   date: {
