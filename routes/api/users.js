@@ -77,11 +77,11 @@ router.post(
 
 module.exports = router;
 
-// @route    POST api/users/company
+// @route    POST api/users/employer
 // @desc     Register an employer
 // @access   Public
 router.post(
-  "/company",
+  "/employer",
   [
     check("name", "Name is required").not().isEmpty(),
     check("email", "Please include a valid email").isEmail(),

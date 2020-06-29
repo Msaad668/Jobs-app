@@ -9,6 +9,10 @@ const jobSchema = new Schema({
     type: String,
     required: true,
   },
+  employerName: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
@@ -28,8 +32,11 @@ const jobSchema = new Schema({
       name: {
         type: String,
       },
-      title: {
-        type: String,
+      isConsidered: {
+        type: Boolean,
+      },
+      isViewed: {
+        type: Boolean,
       },
     },
   ],

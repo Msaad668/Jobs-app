@@ -22,23 +22,33 @@ router.post(
     try {
       const user = await User.findById(req.user.id).select("-password");
 
-      if (user.isCompany === false) {
+      if (user.isCompany === false || user.isCompany == null) {
         return res
           .status(400)
           .json({ errors: [{ msg: "user not authorized to create a job" }] });
       }
 
-      const { title, description, jobUrl, skills } = req.body;
+      const { title, description, jobUrl, skills, employerName } = req.body;
 
       const newJob = new Job({
         title,
         description,
         jobUrl,
         skills,
+        employerName,
         company: req.user.id,
       });
 
       const job = await newJob.save();
+
+      const publishedJob = {
+        job: newJob._id,
+        title,
+      };
+
+      user.jobsPublished.push(publishedJob);
+
+      await user.save();
 
       res.json(job);
     } catch (err) {
@@ -85,6 +95,8 @@ router.get("/:id", checkObjectId("id"), async (req, res) => {
 // @access   private
 router.delete("/:id", [auth, checkObjectId("id")], async (req, res) => {
   try {
+    const user = await User.findById(req.user.id).select("-password");
+
     const job = await Job.findById(req.params.id);
 
     if (!job) {
@@ -97,6 +109,13 @@ router.delete("/:id", [auth, checkObjectId("id")], async (req, res) => {
     }
 
     await job.remove();
+
+    // delete job from employer
+    user.jobsPublished = user.jobsPublished.filter(
+      ({ id }) => id !== req.params.id
+    );
+
+    await user.save();
 
     res.json({ msg: "Job removed" });
   } catch (err) {
@@ -163,7 +182,7 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
     if (user.isCompany == true) {
       return res
         .status(401)
-        .json({ msg: "employer not authorized to apply for a job" });
+        .json({ msg: "An employer is not allowed to apply for a job" });
     }
 
     const job = await Job.findById(req.params.id);
@@ -191,6 +210,17 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
 
     await job.save();
 
+    const newJobAppliedTo = {
+      job: req.params.id,
+      application: job.applications[job.applications.length - 1].id,
+      title: job.title,
+      employerName: job.employerName,
+    };
+
+    user.jobsAppliedTo.unshift(newJobAppliedTo);
+
+    await user.save();
+
     res.json(job.applications);
   } catch (err) {
     console.error(err.message);
@@ -203,6 +233,7 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
 // @access   Private
 router.delete("/unapply/:id/:application_id", auth, async (req, res) => {
   try {
+    const user = await User.findById(req.user.id).select("-password");
     const job = await Job.findById(req.params.id);
 
     if (!job) {
@@ -222,6 +253,13 @@ router.delete("/unapply/:id/:application_id", auth, async (req, res) => {
       return res.status(401).json({ msg: "User not authorized" });
     }
 
+    // delete job from jobs user aplied to
+    user.jobsAppliedTo = user.jobsAppliedTo.filter(
+      (theJob) => theJob.job.toString() !== req.params.id
+    );
+
+    await user.save();
+
     // delete application
     job.applications = job.applications.filter(
       ({ id }) => id !== req.params.application_id
@@ -229,7 +267,7 @@ router.delete("/unapply/:id/:application_id", auth, async (req, res) => {
 
     await job.save();
 
-    return res.json(job.comments);
+    res.json("application removed");
   } catch (err) {
     console.error(err);
     return res.status(500).send("Server Error");

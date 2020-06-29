@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -27,6 +28,32 @@ const UserSchema = new mongoose.Schema({
   address: {
     type: String,
   },
+  jobsPublished: [
+    {
+      job: {
+        type: Schema.Types.ObjectId,
+      },
+      title: {
+        type: String,
+      },
+    },
+  ],
+  jobsAppliedTo: [
+    {
+      job: {
+        type: Schema.Types.ObjectId,
+      },
+      application: {
+        type: Schema.Types.ObjectId,
+      },
+      title: {
+        type: String,
+      },
+      employerName: {
+        type: String,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,
