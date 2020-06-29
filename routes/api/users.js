@@ -158,6 +158,10 @@ router.get("/:id", [auth, checkObjectId("id")], async (req, res) => {
       return res.status(404).json({ msg: "user not found" });
     }
 
+    if (user.id !== req.user.id) {
+      return res.status(404).json({ msg: "not authorized" });
+    }
+
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -174,7 +178,7 @@ router.get(
   [auth, checkObjectId("id")],
   async (req, res) => {
     try {
-      const user = await User.findById(req.params.id);
+      const user = await User.findById(req.params.id).select("-password");
 
       if (!user) {
         return res.status(404).json({ msg: "user not found" });
@@ -205,7 +209,7 @@ router.get(
 // @access   private
 router.get("/jobs/:id", checkObjectId("id"), async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).select("-password");
 
     if (!user) {
       return res.status(404).json({ msg: "user not found" });
