@@ -20,6 +20,19 @@ const jobSchema = new Schema({
     type: [String],
     required: true,
   },
+  applications: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+      },
+      name: {
+        type: String,
+      },
+      title: {
+        type: String,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

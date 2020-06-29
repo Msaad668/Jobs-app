@@ -147,4 +147,93 @@ router.put("/:id", [auth, checkObjectId("id")], async (req, res) => {
   }
 });
 
+// @route    POST api/jobs/apply/:id
+// @desc     apply to a job
+// @access   Private
+router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+
+    // check if it's a user or a company
+    if (user.isCompany == true) {
+      return res
+        .status(401)
+        .json({ msg: "employer not authorized to apply for a job" });
+    }
+
+    const job = await Job.findById(req.params.id);
+
+    //check if there is a job in db
+    if (!job) {
+      return res.status(401).json({ msg: "job not found" });
+    }
+
+    //check if user already applied to the job
+    if (
+      job.applications.some(
+        (application) => application.user.toString() === req.user.id
+      )
+    ) {
+      return res.status(400).json({ msg: "user already applied" });
+    }
+
+    const newApplication = {
+      user: req.user.id,
+      name: user.name,
+    };
+
+    job.applications.push(newApplication);
+
+    await job.save();
+
+    res.json(job.applications);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    DELETE api/jobs/unapply/:id/:application_id
+// @desc     unapply for a job || delete application for a job
+// @access   Private
+router.delete("/unapply/:id/:application_id", auth, async (req, res) => {
+  try {
+    const job = await Job.findById(req.params.id);
+
+    if (!job) {
+      return res.status(401).json({ msg: "job not found" });
+    }
+
+    // Pull out application
+    const application = job.applications.find(
+      (application) => application.id === req.params.application_id
+    );
+    // Make sure application exists
+    if (!application) {
+      return res.status(404).json({ msg: "application does not exist" });
+    }
+    // Check user
+    if (application.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "User not authorized" });
+    }
+
+    // delete application
+    job.applications = job.applications.filter(
+      ({ id }) => id !== req.params.application_id
+    );
+
+    await job.save();
+
+    return res.json(job.comments);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;

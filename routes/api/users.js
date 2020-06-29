@@ -3,6 +3,8 @@ const router = express.Router();
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("../../middleware/auth");
+const checkObjectId = require("../../middleware/checkObjectId");
 
 const { check, validationResult } = require("express-validator");
 
@@ -76,7 +78,7 @@ router.post(
 module.exports = router;
 
 // @route    POST api/users/company
-// @desc     Register user
+// @desc     Register an employer
 // @access   Public
 router.post(
   "/company",
@@ -142,5 +144,24 @@ router.post(
     }
   }
 );
+
+// @route    get api/users/:id
+// @desc     get user by id
+// @access   private
+router.get("/:id", [auth, checkObjectId("id")], async (req, res) => {
+  try {
+    const user = await Job.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ msg: "user not found" });
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;
