@@ -112,7 +112,7 @@ router.delete("/:id", [auth, checkObjectId("id")], async (req, res) => {
 
     // delete job from employer
     user.jobsPublished = user.jobsPublished.filter(
-      ({ id }) => id !== req.params.id
+      ({ job }) => job.toString() !== req.params.id
     );
 
     await user.save();
