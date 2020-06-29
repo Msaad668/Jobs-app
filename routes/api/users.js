@@ -150,13 +150,68 @@ router.post(
 // @access   private
 router.get("/:id", [auth, checkObjectId("id")], async (req, res) => {
   try {
-    const user = await Job.findById(req.params.id);
+    const user = await User.findById(req.params.id).select(
+      "-jobsAppliedTo -password"
+    );
 
     if (!user) {
       return res.status(404).json({ msg: "user not found" });
     }
 
     res.json(user);
+  } catch (err) {
+    console.error(err.message);
+
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route    get api/users/applications/:id
+// @desc     get all applications of a user by userid
+// @access   private
+router.get(
+  "/applications/:id",
+  [auth, checkObjectId("id")],
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+
+      if (!user) {
+        return res.status(404).json({ msg: "user not found" });
+      }
+
+      if (user.isCompany) {
+        return res.status(400).json({
+          msg:
+            "employer can not apply to jobs, so an employer has zero applications :)",
+        });
+      }
+
+      if (user.id.toString() !== req.user.id) {
+        return res.status(404).json({ msg: "user not authorized" });
+      }
+
+      res.json(user.jobsAppliedTo);
+    } catch (err) {
+      console.error(err.message);
+
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route    get api/users/jobs/:id
+// @desc     get all jobs posted by an employer by userId
+// @access   private
+router.get("/jobs/:id", checkObjectId("id"), async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({ msg: "user not found" });
+    }
+
+    res.json(user.jobsPublished);
   } catch (err) {
     console.error(err.message);
 
