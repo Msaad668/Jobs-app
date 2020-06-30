@@ -131,7 +131,7 @@ router.delete("/:id", [auth, checkObjectId("id")], async (req, res) => {
 router.put("/:id", [auth, checkObjectId("id")], async (req, res) => {
   const { title, description, jobUrl, skills } = req.body;
 
-  // Build contact object
+  // Build newjob object
   const jobFields = {};
   if (title) jobFields.title = title;
   if (description) jobFields.description = description;
@@ -230,7 +230,7 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
 });
 
 // @route    DELETE api/jobs/unapply/:id/:application_id
-// @desc     unapply for a job || delete application for a job
+// @desc     unapply for a job, in other words delete application for a job
 // @access   Private
 router.delete("/unapply/:id/:application_id", auth, async (req, res) => {
   try {
@@ -294,6 +294,120 @@ router.get(
       }
 
       res.json(job.applications);
+    } catch (err) {
+      console.error(err.message);
+
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route     PUT api/jobs/:id/in_consideration/:application_id
+// @desc      Update job by id
+// @access    Private
+router.put(
+  "/:id/in_consideration/:application_id",
+  [auth, checkObjectId("id")],
+  async (req, res) => {
+    try {
+      let job = await Job.findById(req.params.id);
+
+      if (!job) {
+        return res.status(401).json({ msg: "job not found" });
+      }
+
+      // Make sure user owns Job
+      if (job.company.toString() !== req.user.id) {
+        return res
+          .status(401)
+          .json({ msg: "user not authorized to edit the job" });
+      }
+
+      const Application = job.applications.filter(
+        (app) => app.id.toString() == req.params.application_id
+      );
+
+      let user = await User.findById(Application[0].user);
+
+      user.jobsAppliedTo.map((application) => {
+        if (application.application.toString() === req.params.application_id) {
+          application.status = "In consideration";
+        } else {
+          return res.status(401).json({ msg: "job not found" });
+        }
+      });
+
+      await user.save();
+
+      job.applications.map((application) => {
+        if (application._id.toString() === req.params.application_id) {
+          application.status = "In consideration";
+        } else {
+          return res.status(401).json({ msg: "application not found" });
+        }
+      });
+
+      const savedJob = await job.save();
+
+      res.json(savedJob);
+    } catch (err) {
+      console.error(err.message);
+
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route     PUT api/jobs/:id/not_selected/:application_id
+// @desc      Update job by id
+// @access    Private
+router.put(
+  "/:id/not_selected/:application_id",
+  [auth, checkObjectId("id")],
+  async (req, res) => {
+    try {
+      let job = await Job.findById(req.params.id);
+
+      if (!job) {
+        return res.status(401).json({ msg: "job not found" });
+      }
+
+      // Make sure user owns Job
+      if (job.company.toString() !== req.user.id) {
+        return res
+          .status(401)
+          .json({ msg: "user not authorized to edit the job" });
+      }
+
+      const Application = job.applications.filter(
+        (app) => app.id.toString() == req.params.application_id
+      );
+
+      let user = await User.findById(Application[0].user);
+
+      user.jobsAppliedTo.map((application) => {
+        if (application.application.toString() === req.params.application_id) {
+          application.status = "not selected";
+        } else {
+          return res
+            .status(401)
+            .json({ msg: "application not found in the user jobsAppliedTo" });
+        }
+      });
+
+      await user.save();
+
+      job.applications.map((application) => {
+        if (application._id.toString() === req.params.application_id) {
+          application.status = "not selected";
+        } else {
+          return res.status(401).json({ msg: "application not found" });
+        }
+      });
+
+      const savedJob = await job.save();
+
+      res.json(savedJob);
     } catch (err) {
       console.error(err.message);
 
