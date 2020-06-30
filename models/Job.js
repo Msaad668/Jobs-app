@@ -20,9 +20,11 @@ const jobSchema = new Schema({
   jobUrl: {
     type: String,
   },
-  skills: {
+  // skillsNeeded: {
+  //   type: [String],
+  // },
+  jobRequirements: {
     type: [String],
-    required: true,
   },
   applications: [
     {

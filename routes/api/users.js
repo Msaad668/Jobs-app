@@ -96,7 +96,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password, summary, address, website } = req.body;
+    const { name, email, password } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -112,9 +112,6 @@ router.post(
         email,
         password,
         isCompany: true,
-        summary,
-        address,
-        website,
       });
 
       const salt = await bcrypt.genSalt(10);
@@ -148,27 +145,27 @@ router.post(
 // @route    get api/users/:id
 // @desc     get user by id
 // @access   private
-router.get("/:id", [auth, checkObjectId("id")], async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).select(
-      "-jobsAppliedTo -password"
-    );
+// router.get("/:id", [auth, checkObjectId("id")], async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id).select(
+//       "-jobsAppliedTo -password"
+//     );
 
-    if (!user) {
-      return res.status(404).json({ msg: "user not found" });
-    }
+//     if (!user) {
+//       return res.status(404).json({ msg: "user not found" });
+//     }
 
-    if (user.id !== req.user.id) {
-      return res.status(404).json({ msg: "not authorized" });
-    }
+//     if (user.id !== req.user.id) {
+//       return res.status(404).json({ msg: "not authorized" });
+//     }
 
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
+//     res.json(user);
+//   } catch (err) {
+//     console.error(err.message);
 
-    res.status(500).send("Server Error");
-  }
-});
+//     res.status(500).send("Server Error");
+//   }
+// });
 
 // @route    get api/users/applications/:id
 // @desc     get all applications of a user by userid

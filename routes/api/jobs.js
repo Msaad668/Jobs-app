@@ -6,6 +6,7 @@ const checkObjectId = require("../../middleware/checkObjectId");
 
 const Job = require("../../models/Job");
 const User = require("../../models/User");
+const Profile = require("../../models/Profile");
 
 // @route    POST api/jobs
 // @desc     Create a job
@@ -28,14 +29,24 @@ router.post(
           .json({ errors: [{ msg: "user not authorized to create a job" }] });
       }
 
-      const { title, description, jobUrl, skills, employerName } = req.body;
+      const profile = await Profile.findOne({ user: req.user.id }).select(
+        "companyName"
+      );
+
+      if (!profile) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "please create a profile first" }] });
+      }
+
+      const { title, description, jobUrl, jobRequirements } = req.body;
 
       const newJob = new Job({
         title,
         description,
         jobUrl,
-        skills,
-        employerName,
+        jobRequirements,
+        employerName: profile.companyName,
         company: req.user.id,
       });
 

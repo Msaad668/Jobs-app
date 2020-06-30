@@ -19,15 +19,6 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  summary: {
-    type: String,
-  },
-  website: {
-    type: String,
-  },
-  address: {
-    type: String,
-  },
   jobsPublished: [
     {
       job: {
