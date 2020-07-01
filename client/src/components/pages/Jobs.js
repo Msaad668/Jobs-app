@@ -28,7 +28,7 @@ const Jobs = () => {
           search
         </button>
       </div>
-      <div class="card">
+      {/* <div class="card">
         <div class="card-body">
           <h5 class="card-title">fullstack developer</h5>
           <h6 class="card-subtitle mb-2 text-muted">die freiheit firma</h6>
@@ -47,7 +47,7 @@ const Jobs = () => {
             apply
           </a>
         </div>
-      </div>
+      </div> */}
 
       {jobs.map((job) => {
         return (

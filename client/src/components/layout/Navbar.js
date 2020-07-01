@@ -37,7 +37,7 @@ const Navbar = () => {
           </li>
           <li class="nav-item">
             <Link class="nav-link" to="/add-job">
-              add job
+              my applications
             </Link>
           </li>
           <li class="nav-item">
