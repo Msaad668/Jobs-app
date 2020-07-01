@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
-const Jobs = () => {
-  const [jobs, setJobs] = useState([]);
+import { connect } from "react-redux";
+import { getJobs } from "../../actions/jobs";
 
+const Jobs = ({ getJobs, jobs: { jobs, loading } }) => {
   useEffect(() => {
-    axios.get("/api/jobs").then((res) => {
-      setJobs(res.data);
-    });
-  }, []);
-
-  console.log(jobs);
+    getJobs();
+  }, [getJobs]);
 
   return (
     <div className="container">
@@ -88,4 +84,8 @@ const Jobs = () => {
   );
 };
 
-export default Jobs;
+const mapStateToProps = (state) => ({
+  jobs: state.job,
+});
+
+export default connect(mapStateToProps, { getJobs })(Jobs);
