@@ -1,7 +1,7 @@
 import React from "react";
 
 const AddJob = () => {
-  return <div>add new job</div>;
+  return <div>my applications</div>;
 };
 
 export default AddJob;

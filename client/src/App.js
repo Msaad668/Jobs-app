@@ -6,9 +6,10 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
 import Jobs from "./components/pages/Jobs";
 import Profile from "./components/pages/Profile";
-import AddJob from "./components/pages/AddJob";
+import MyApplications from "./components/pages/MyApplications";
 import SignIn from "./components/pages/SignIn";
 import store from "./store";
+import Alert from "./components/layout/Alert";
 
 function App() {
   return (
@@ -16,11 +17,12 @@ function App() {
       <Router>
         <Fragment>
           <Navbar />
+          <Alert />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/jobs" exact component={Jobs} />
             <Route path="/profile" exact component={Profile} />
-            <Route path="/add-job" exact component={AddJob} />
+            <Route path="/add-job" exact component={MyApplications} />
             <Route path="/signin" exact component={SignIn} />
           </Switch>
         </Fragment>
