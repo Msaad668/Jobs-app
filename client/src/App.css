@@ -1,49 +1,64 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital@1&family=Roboto&display=swap");
 
-.jumbotron {
-  font-family: "Roboto", sans-serif;
-  background: #1a1a1d;
-  color: white;
-  height: 91vh;
-  margin-bottom: 0;
-  border-radius: 0%;
-}
-
 .home {
-  padding: 4% 10%;
-}
-
-.home h1 {
+  /* padding: 4% 10%; */
   font-family: "Roboto", sans-serif;
-  margin: 3rem 0;
+  background: url(https://c4.wallpaperflare.com/wallpaper/503/398/475/gradient-shapes-abstract-minimalism-wallpaper-preview.jpg);
+  background-size: cover;
+  height: 91vh;
+  color: #e7e7e7;
 }
 
-.home p {
+.main1 {
+  padding-top: 3rem;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.main2 {
+  padding: 1rem 0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.main3 {
+  text-align: center;
+  padding: 0.5rem;
   font-size: 1.5rem;
-  margin: 3rem 0;
+}
+
+.buttons {
+  width: 65vh;
 }
 
 .home a {
   margin: 1rem 3rem 1rem 0;
 }
 
+.search-bar {
+  width: 85vh;
+}
+
+.main-search {
+  min-width: 70vh;
+}
+
 /* navbar */
 
 .navbar {
   font-family: "Roboto";
-  height: 9vh;
+  min-height: 9vh;
   font-size: 1.5rem;
-  /* padding: 0rem 1rem; */
 }
 
 .navbar a {
   font-size: 1.2rem;
 }
 .navbar-nav {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 .nav-item {
-  margin-right: 1rem;
+  margin-right: rem;
 }
 
 /* card */
