@@ -6,7 +6,10 @@ const JobItem = ({ job }) => {
     <div class="job-card">
       <div class="p-3">
         <h4 class=" ">
-          <Link class="text-decoration-none font-weight-bolder" href="#!">
+          <Link
+            to={`/job/${job._id}`}
+            class="text-decoration-none font-weight-bolder"
+          >
             {job.title}
           </Link>
           <small class="text-muted">- 4 days ago</small>

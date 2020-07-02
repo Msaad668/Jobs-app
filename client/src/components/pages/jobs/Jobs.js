@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
-import { getJobs } from "../../actions/jobs";
+import { getJobs } from "../../../actions/jobs";
 import JobItem from "./JobItem";
-import Spinner from "../layout/Spinner";
+import Spinner from "../../layout/Spinner";
 
 const Jobs = ({ getJobs, jobs: { jobs, loading } }) => {
   useEffect(() => {

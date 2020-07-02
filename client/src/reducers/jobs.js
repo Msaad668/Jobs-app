@@ -1,4 +1,4 @@
-import { GET_JOBS, JOB_ERROR } from "../actions/types";
+import { GET_JOBS, JOB_ERROR, GET_JOB } from "../actions/types";
 
 const initialState = {
   jobs: [],
@@ -16,12 +16,18 @@ export default function (state = initialState, action) {
         ...state,
         jobs: payload,
         loading: false,
-      }; 
-      case JOB_ERROR:
+      };
+    case GET_JOB:
+      return {
+        ...state,
+        job: payload,
+        loading: false,
+      };
+    case JOB_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
+        loading: false,
       };
     default:
       return state;

@@ -74,12 +74,14 @@
   /* padding: 4% 10%; */
   font-family: "Roboto", sans-serif;
   background: #e7e7e7;
+  min-height: 100vh;
   background-size: cover;
   color: black;
+  margin-bottom: 0;
 }
 
 .job-card {
   border: 2px solid darkslategray;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 1.5rem 6rem;
 }
