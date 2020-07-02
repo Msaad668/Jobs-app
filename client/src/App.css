@@ -63,28 +63,23 @@
 
 /* card */
 
-.card {
-  margin: 3%;
-  background: #1a1a1d;
-  color: white;
-  border-radius: 5px;
-}
-
-.search {
-  margin: 2.5rem 0rem;
-}
-
-.search-input {
-  margin-bottom: 1rem;
-}
-
-.search-button {
-  margin-bottom: 1rem;
-}
-
 /* login  */
 
 .login {
   border: 1px solid darkslategray;
   border-radius: 4%;
+}
+
+.jobs {
+  /* padding: 4% 10%; */
+  font-family: "Roboto", sans-serif;
+  background: #e7e7e7;
+  background-size: cover;
+  color: black;
+}
+
+.job-card {
+  border: 2px solid darkslategray;
+  border-radius: 15px;
+  margin: 1.5rem 6rem;
 }

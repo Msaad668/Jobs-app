@@ -9,6 +9,12 @@ const SignUpEmployer = () => {
           style={{ maxWidth: "600px", fontSize: "1.5rem" }}
         >
           <div className="p-4">
+            <h3
+              className="my-2"
+              style={{ textAlign: "center", color: "darkblue" }}
+            >
+              sign up as an employer
+            </h3>
             <div className="form-group ">
               <label htmlFor="employerNmae">Name</label>
               <input
