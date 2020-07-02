@@ -14,7 +14,7 @@ const Home = () => {
           Login
         </Link>
         <Link
-          to="add-job"
+          to="/signup/user"
           class="btn btn-outline-primary btn-lg"
           href="#"
           role="button"
@@ -22,7 +22,7 @@ const Home = () => {
           Sign up
         </Link>
         <Link
-          to="add-job"
+          to="/signup/employer"
           class="btn btn-outline-success btn-lg"
           href="#"
           role="button"

@@ -11,6 +11,8 @@ import SignIn from "./components/pages/SignIn";
 import store from "./store";
 import Alert from "./components/layout/Alert";
 import Login from "./components/pages/auth/Login";
+import SignUpEmployer from "./components/pages/auth/SignUpEmployer";
+import SignUpUser from "./components/pages/auth/SignUpUser";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
             <Route path="/add-job" exact component={MyApplications} />
             <Route path="/signin" exact component={SignIn} />
             <Route path="/login" exact component={Login} />
+            <Route path="/signup/employer" exact component={SignUpEmployer} />
+            <Route path="/signup/user" exact component={SignUpUser} />
           </Switch>
         </Fragment>
       </Router>

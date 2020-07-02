@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const login = () => {
+const SignUpEmployer = () => {
   return (
     <Fragment>
       <form className="container my-5">
@@ -9,6 +9,14 @@ const login = () => {
           style={{ maxWidth: "600px", fontSize: "1.5rem" }}
         >
           <div className="p-4">
+            <div className="form-group ">
+              <label htmlFor="employerNmae">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter your name..."
+              />
+            </div>
             <div className="form-group ">
               <label htmlFor="exampleInputEmail1">Email address</label>
               <input
@@ -55,4 +63,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default SignUpEmployer;
