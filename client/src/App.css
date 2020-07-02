@@ -82,6 +82,7 @@
 
 .job-card {
   border: 2px solid darkslategray;
+  background-color: #c5c6c7;
   border-radius: 10px;
   margin: 1.5rem 6rem;
 }

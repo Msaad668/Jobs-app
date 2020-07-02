@@ -42,7 +42,7 @@ const Home = () => {
       <div className="search" style={{ maxWidth: "85vh", margin: "auto" }}>
         <input
           type="text"
-          class="form-control search-input"
+          class="form-control search-input my-2"
           placeholder="Search jobs..."
         />
         <button
