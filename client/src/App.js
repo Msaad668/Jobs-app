@@ -10,6 +10,7 @@ import MyApplications from "./components/pages/MyApplications";
 import SignIn from "./components/pages/SignIn";
 import store from "./store";
 import Alert from "./components/layout/Alert";
+import Login from "./components/pages/auth/Login";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/profile" exact component={Profile} />
             <Route path="/add-job" exact component={MyApplications} />
             <Route path="/signin" exact component={SignIn} />
+            <Route path="/login" exact component={Login} />
           </Switch>
         </Fragment>
       </Router>

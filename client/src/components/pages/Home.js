@@ -6,7 +6,7 @@ const Home = () => {
     <div class="home">
       <div class="ml-auto buttons">
         <Link
-          to="/jobs"
+          to="/login"
           class="btn btn-outline-info btn-lg"
           href="#"
           role="button"
