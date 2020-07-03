@@ -27,7 +27,9 @@ export default function (state = initialState, action) {
         user: payload,
       };
     case EMPLOYER_REGISTER_SUCCESS:
-      localStorage.setItem("token", payload.token);
+      if (payload.token !== null) {
+        localStorage.setItem("token", payload.token);
+      }
       return {
         ...state,
         ...payload,
@@ -35,7 +37,9 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case USER_REGISTER_SUCCESS:
-      localStorage.setItem("token", payload.token);
+      if (payload.token !== null) {
+        localStorage.setItem("token", payload.token);
+      }
       return {
         ...state,
         ...payload,
@@ -43,7 +47,9 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case LOGIN_SUCCESS:
-      localStorage.setItem("token", payload.token);
+      if (payload.token !== null) {
+        localStorage.setItem("token", payload.token);
+      }
       return {
         ...state,
         ...payload,

@@ -110,7 +110,7 @@ export const login = (email, password) => async (dispatch) => {
 
     console.log("1", err);
 
-    dispatch({ type: LOGIN_FAILED });
+    dispatch({ type: AUTH_ERROR });
   }
 };
 

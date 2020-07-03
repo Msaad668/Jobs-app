@@ -1,27 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const JobItem = ({ job }) => {
+const JobItem = ({ job: { _id, title, employerName, description } }) => {
   return (
-    <div class="job-card">
-      <div class="p-3">
-        <h4 class=" ">
+    <div className="job-card">
+      <div className="p-3">
+        <h4 className=" ">
           <Link
-            to={`/job/${job._id}`}
-            class="text-decoration-none font-weight-bolder"
+            to={`/job/${_id}`}
+            className="text-decoration-none font-weight-bolder"
           >
-            {job.title}
+            {title}
           </Link>
-          <small class="text-muted">- 4 days ago</small>
+          <small className="text-muted">- 4 days ago</small>
         </h4>
 
         <h5>
-          <Link class="text-decoration-none" href="#!">
-            {job.employerName}
+          <Link className="text-decoration-none" to="/">
+            {employerName}
           </Link>{" "}
           - cairo, egypt
         </h5>
-        <p class="">{job.description}</p>
+        <p className="">{description}</p>
       </div>
     </div>
   );

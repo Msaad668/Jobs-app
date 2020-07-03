@@ -28,10 +28,15 @@ const Jobs = ({ getJobs, jobs: { jobs, loading } }) => {
 
         {loading ? (
           <Spinner />
-        ) : (
+        ) : jobs.length !== 0 ? (
           jobs.map((job) => {
-            return <JobItem job={job} />;
+            return <JobItem key={job._id} job={job} />;
           })
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            {" "}
+            <h1>no jobs found</h1>{" "}
+          </div>
         )}
       </div>
     </div>
