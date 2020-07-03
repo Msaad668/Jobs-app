@@ -5,7 +5,7 @@ import Axios from "axios";
 // Get jobs
 export const getJobs = () => async (dispatch) => {
   try {
-    const res = await Axios.get("/api/jobs");
+    const res = await Axios.get("http://localhost:5000/api/jobs");
 
     dispatch({
       type: GET_JOBS,
@@ -21,7 +21,7 @@ export const getJobs = () => async (dispatch) => {
 // Get a single job
 export const getJob = (jobId) => async (dispatch) => {
   try {
-    const res = await Axios.get(`/api/jobs/${jobId}`);
+    const res = await Axios.get(`http://localhost:5000/api/jobs/${jobId}`);
     console.log(res.data);
 
     dispatch({

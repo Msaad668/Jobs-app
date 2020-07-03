@@ -17,13 +17,13 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("/api/auth");
+    const res = await axios.get("http://localhost:5000/api/auth");
     dispatch({
       type: USER_LOADED,
       payload: res.data,
     });
   } catch (error) {
-    console.log("2", error);
+    // console.log("2", error);
 
     dispatch({
       type: AUTH_ERROR,
@@ -34,7 +34,13 @@ export const loadUser = () => async (dispatch) => {
 // register an employer
 export const registerEmployer = (FormData) => async (dispatch) => {
   try {
-    const res = await axios.post("/users/employer", FormData);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post("http://localhost:5000/api/users/employer", FormData, config);
 
     dispatch({
       type: EMPLOYER_REGISTER_SUCCESS,
@@ -57,7 +63,12 @@ export const registerEmployer = (FormData) => async (dispatch) => {
 // register a user
 export const registerUser = (FormData) => async (dispatch) => {
   try {
-    const res = await axios.post("/api/users", FormData);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await axios.post("http://localhost:5000/api/users", FormData, config);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -88,7 +99,7 @@ export const login = (email, password) => async (dispatch) => {
     };
     const body = { email, password };
 
-    const res = await axios.post("/api/auth", body, config);
+    const res = await axios.post("http://localhost:5000/api/auth", body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -103,7 +114,7 @@ export const login = (email, password) => async (dispatch) => {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
 
-    console.log("1", err);
+    // console.log("1", err);
 
     dispatch({ type: AUTH_ERROR });
   }

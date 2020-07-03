@@ -1,6 +1,36 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import { registerUser } from "../../../actions/auth";
+import { setAlert } from "../../../actions/alert";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-const SignUpUser = () => {
+const SignUpUser = ({ isAuthenticated, setAlert, registerUser }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+
+  const { name, email, password, password2 } = formData;
+
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setAlert("passwords do not match", "danger");
+    } else {
+      registerUser({ name, email, password });
+    }
+  };
+
+  if (isAuthenticated) {
+    return <Redirect to="/jobs" />;
+  }
+
   return (
     <Fragment>
       <form className="container my-5">
@@ -21,6 +51,9 @@ const SignUpUser = () => {
                 type="text"
                 className="form-control"
                 placeholder="Enter your name..."
+                value={name}
+                onChange={onChange}
+                name="name"
               />
             </div>
             <div className="form-group ">
@@ -30,6 +63,9 @@ const SignUpUser = () => {
                 className="form-control"
                 aria-describedby="emailHelp"
                 placeholder="Enter email..."
+                value={email}
+                onChange={onChange}
+                name="email"
               />
               <small
                 id="emailHelp"
@@ -46,12 +82,28 @@ const SignUpUser = () => {
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
+                value={password}
+                onChange={onChange}
+                name="password"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="exampleInputPassword1">confirm password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                value={password2}
+                onChange={onChange}
+                name="password2"
               />
             </div>
             <button
               type="submit"
               style={{ fontSize: "1.2rem" }}
               className="btn btn-primary btn-block search-button my-4"
+              onClick={onSubmit}
             >
               Submit
             </button>
@@ -69,4 +121,8 @@ const SignUpUser = () => {
   );
 };
 
-export default SignUpUser;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, registerUser })(SignUpUser);
