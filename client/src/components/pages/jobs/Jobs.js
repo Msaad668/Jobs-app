@@ -12,13 +12,15 @@ const Jobs = ({ getJobs, jobs: { jobs, loading } }) => {
 
   return (
     <div class="jobs">
-      <div class="container">
-        <h2>Explore new opportunities</h2>
+      <div class="container p-1">
+        <h2 class="my-4 " style={{ textAlign: "center" }}>
+          Explore new opportunities
+        </h2>
 
-        <div className="search">
+        <div className="w-75 mx-auto">
           <input
             type="text"
-            class="form-control my-3"
+            class="form-control p-3 my-3"
             placeholder="Search jobs..."
           />
           <button type="button" class="btn btn-secondary btn-lg btn-block my-3">

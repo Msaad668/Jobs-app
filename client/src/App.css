@@ -69,20 +69,48 @@
   border: 1px solid darkslategray;
   border-radius: 4%;
 }
-
 .jobs {
   /* padding: 4% 10%; */
   font-family: "Roboto", sans-serif;
-  background: #e7e7e7;
-  min-height: 100vh;
+  background: #1a1a1d;
   background-size: cover;
-  color: black;
-  margin-bottom: 0;
+  color: white;
+  min-height: 91vh;
 }
 
 .job-card {
-  border: 2px solid darkslategray;
-  background-color: #c5c6c7;
-  border-radius: 10px;
+  border: 2px solid #1a1a1d;
+  background-color: #282828;
+  border-radius: 15px;
   margin: 1.5rem 6rem;
+}
+
+.user-profile {
+  background: #1a1a1d;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  min-height: 91vh;
+}
+
+.user-profile {
+  background: #1a1a1d;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  min-height: 91vh;
+}
+
+.links button {
+  min-width: 9rem;
+}
+
+.profile-wrapper {
+  background: #282828;
+  color: white;
+  border: 1px solid #1a1a1d;
+  border-radius: 5px;
+}
+
+.profile-wrapper hr {
+  background: white;
+  opacity: 0.4;
 }
