@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-const Navbar = () => {
+import { connect } from "react-redux";
+import { logout } from "../../actions/auth";
+const Navbar = ({ logout }) => {
   return (
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <Link to="/" class="navbar-brand">
@@ -46,7 +47,7 @@ const Navbar = () => {
               sign in
             </Link>
           </li>
-          <li class="nav-item">
+          <li onClick={logout} class="nav-item">
             <Link class="nav-link" to="/">
               sign out
             </Link>
@@ -57,4 +58,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default connect(null, { logout })(Navbar);
