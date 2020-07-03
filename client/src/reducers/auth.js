@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
         user: payload,
       };
     case EMPLOYER_REGISTER_SUCCESS:
-      if (payload.token !== null) {
+      if (payload.token) {
         localStorage.setItem("token", payload.token);
       }
       return {
@@ -36,7 +36,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case USER_REGISTER_SUCCESS:
-      if (payload.token !== null) {
+      if (payload.token) {
         localStorage.setItem("token", payload.token);
       }
       return {
@@ -46,7 +46,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case LOGIN_SUCCESS:
-      if (payload.token !== null) {
+      if (payload.token) {
         localStorage.setItem("token", payload.token);
       }
       return {
