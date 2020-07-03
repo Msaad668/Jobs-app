@@ -1,4 +1,5 @@
 import { GET_JOBS, JOB_ERROR, GET_JOB } from "./types";
+// import api from "../utils/api";
 import Axios from "axios";
 
 // Get jobs
