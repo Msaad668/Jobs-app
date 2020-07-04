@@ -34,14 +34,22 @@ router.post(
       );
 
       if (!profile) {
-        return res
-          .status(400)
-          .json({
-            errors: [{ msg: "please create an employer profile first" }],
-          });
+        return res.status(400).json({
+          errors: [{ msg: "please create an employer profile first" }],
+        });
       }
 
-      const { title, description, jobUrl, jobRequirements } = req.body;
+      const {
+        title,
+        description,
+        jobUrl,
+        jobRequirements,
+        expNeeded,
+        jobType,
+        numberOfVacancies,
+        salary,
+        locationOfTheJob,
+      } = req.body;
 
       const newJob = new Job({
         title,
@@ -50,6 +58,11 @@ router.post(
         jobRequirements,
         employerName: profile.companyName,
         company: req.user.id,
+        expNeeded,
+        jobType,
+        numberOfVacancies,
+        salary,
+        locationOfTheJob,
       });
 
       const job = await newJob.save();
@@ -89,7 +102,7 @@ router.get("/", async (req, res) => {
 // @access   public
 router.get("/:id", checkObjectId("id"), async (req, res) => {
   try {
-    const job = await Job.findById(req.params.id).select("-applications");
+    const job = await Job.findById(req.params.id);
 
     if (!job) {
       return res.status(404).json({ msg: "job not found" });
@@ -193,11 +206,9 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
 
     // check if it's a user or a company
     if (user.isCompany == true) {
-      return res
-        .status(401)
-        .json({
-          errors: [{ msg: "an employer is not allowed to apply for a job" }],
-        });
+      return res.status(401).json({
+        errors: [{ msg: "an employer is not allowed to apply for a job" }],
+      });
     }
 
     const profile = await Profile.findOne({ user: req.user.id });

@@ -20,6 +20,23 @@ const jobSchema = new Schema({
   jobUrl: {
     type: String,
   },
+  expNeeded: {
+    type: String,
+  },
+  jobType: {
+    type: String,
+    enum: ["full time", "part time"],
+  },
+  numberOfVacancies: {
+    type: Number,
+  },
+  salary: {
+    type: Number,
+  },
+  locationOfTheJob: {
+    type: String,
+  },
+
   // skillsNeeded: {
   //   type: [String],
   // },

@@ -5,7 +5,7 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Home from "./components/layout/Home";
 import Jobs from "./components/pages/jobs/Jobs";
-import Profile from "./components/pages/Profile";
+import UserProfile from "./components/pages/profile/UserProfile";
 import MyApplications from "./components/pages/MyApplications";
 // import SignIn from "./components/pages/SignIn";
 import store from "./store";
@@ -36,7 +36,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/jobs" exact component={Jobs} />
             <Route path="/job/:id" exact component={Job} />
-            <Route path="/profile" exact component={Profile} />
+            <Route path="/profile" exact component={UserProfile} />
             <Route path="/add-job" exact component={MyApplications} />
             {/* <Route path="/signin" exact component={SignIn} /> */}
             <Route path="/login" exact component={Login} />

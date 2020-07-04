@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import { getCurrentProfile } from "../../actions/profile";
+import { getCurrentProfile } from "../../../actions/profile";
 import { connect } from "react-redux";
 import { useEffect } from "react";
-import Spinner from "../layout/Spinner";
+import Spinner from "../../layout/Spinner";
 import Moment from "react-moment";
 import moment from "moment";
 

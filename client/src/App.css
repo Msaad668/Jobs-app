@@ -114,3 +114,10 @@
   background: white;
   opacity: 0.4;
 }
+
+.single-job-page {
+  background: #1a1a1d;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  min-height: 91vh;
+}
