@@ -7,7 +7,6 @@ import Home from "./components/layout/Home";
 import Jobs from "./components/pages/jobs/Jobs";
 import UserProfile from "./components/pages/profile/UserProfile";
 import MyApplications from "./components/pages/MyApplications";
-// import SignIn from "./components/pages/SignIn";
 import store from "./store";
 import Alert from "./components/layout/Alert";
 import Login from "./components/pages/auth/Login";

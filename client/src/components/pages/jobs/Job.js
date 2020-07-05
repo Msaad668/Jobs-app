@@ -10,15 +10,15 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
   }, [getJob, match.params.id]);
 
   return (
-    <div class="single-job-page p-5" style={{}}>
+    <div class="single-job-page padd-2" style={{}}>
       {!loading && job !== null ? (
         <Fragment>
           <div className="row">
-            <div className="col-7">
-              <div className="profile-wrapper mb-4 ml-4 ">
-                <div className="p-4" style={{ fontSize: "2rem" }}>
+            <div className="col-8">
+              <div className="profile-wrapper  ">
+                <div className="padd-2" style={{ fontSize: "1.5rem" }}>
                   <p>{job.title}</p>
-                  <Link t0="/" className="text-decoration-none">
+                  <Link to="/" className="text-decoration-none">
                     {job.employerName}
                   </Link>
                   <p className="text-muted">{job.locationOfTheJob}</p>
@@ -27,7 +27,7 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
                     <div class="col-8">
                       <button
                         type="button"
-                        style={{ fontSize: "1.5rem", minWidth: "15rem" }}
+                        style={{ fontSize: "1.4rem", minWidth: "25vh" }}
                         className="btn btn-success "
                       >
                         Apply for job
@@ -43,10 +43,10 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
                 </div>
               </div>
 
-              <div className="profile-wrapper  mt-4 ml-4 ">
-                <div className="p-4">
-                  <h2>About the job:</h2>
-                  <p style={{ fontSize: "1.3rem" }}>
+              <div className="profile-wrapper  margintop-2 ">
+                <div className="padd-2">
+                  <h3>About the job:</h3>
+                  <p style={{ fontSize: "1.rem" }}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Obcaecati odit saepe exercitationem accusantium fugit
                     laborum nihil tempore ratione error? Itaque consequatur odio
@@ -58,8 +58,8 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
                     Exercitationem, dolor natus? kldjfj kfijeogeh weihfi;erhfrh
                     hjfjh kjfdhkjehfrkj ejkhfjhefj jewhrfeh
                   </p>
-                  <h2>job requirements:</h2>
-                  <ul style={{ fontSize: "1.3rem" }}>
+                  <h3>job requirements:</h3>
+                  <ul style={{ fontSize: "1.2rem" }}>
                     <li>wjkfdhkjwfhjfg</li>
                     <li>wjkfdhkjwfhjfg</li>
                     <li>wjkfdhkjwfhjfg</li>
@@ -71,14 +71,17 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
               </div>
             </div>
 
-            <div className="col-4">
-              <div className="profile-wrapper ">
-                <div className="p-4" style={{ fontSize: "1.4rem" }}>
-                  <p>Experience needed : {job.expNeeded}</p>
+            <div
+              className="col-4"
+              style={{ paddingLeft: "0", marginLeft: "0" }}
+            >
+              <div className="profile-wrapper">
+                <div className="padd-2" style={{ fontSize: "1.1rem" }}>
+                  <p>Experience needed : jkhfsdfg{job.expNeeded}</p>
                   <hr />
-                  <p>salary : {job.salary}</p>
+                  <p>salary : 46454{job.salary}</p>
                   <hr />
-                  <p>jobType : {job.jobType}</p>
+                  <p>jobType : full time{job.jobType}</p>
                   <hr />
                   <p>vacancies : {job.numberOfVacancies}</p>
                   <hr />
