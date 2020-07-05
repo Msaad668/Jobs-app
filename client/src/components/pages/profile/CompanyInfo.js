@@ -3,6 +3,7 @@ import { getProfileById } from "../../../actions/profile";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import Spinner from "../../layout/Spinner";
+import { Link } from "react-router-dom";
 
 const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
   useEffect(() => {
@@ -29,7 +30,16 @@ const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
                 <div className="padd-2">
                   <h3>jobs published:</h3>
                   {profile.user.jobsPublished.map((job) => {
-                    return <h3>{job.title}</h3>;
+                    return (
+                      <h3>
+                        <Link
+                          to={`/job/${job._id}`}
+                          className="text-decoration-none font-weight-bolder"
+                        >
+                          {job.title}
+                        </Link>
+                      </h3>
+                    );
                   })}
                 </div>
               </div>
