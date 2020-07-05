@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const JobItem = ({ job: { _id, title, employerName, description } }) => {
+const JobItem = ({
+  job: { _id, title, employerName, description, company },
+}) => {
   return (
     <div className="job-card">
       <div className="p-3">
@@ -16,7 +18,10 @@ const JobItem = ({ job: { _id, title, employerName, description } }) => {
         </h4>
 
         <h5>
-          <Link className="text-decoration-none" to="/">
+          <Link
+            className="text-decoration-none"
+            to={`/company-info/${company}`}
+          >
             {employerName}
           </Link>{" "}
           - cairo, egypt

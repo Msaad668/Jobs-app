@@ -6,7 +6,7 @@ import Spinner from "../../layout/Spinner";
 import Moment from "react-moment";
 import moment from "moment";
 
-const Profile = ({ user, profile, getCurrentProfile, loading }) => {
+const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
@@ -158,4 +158,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Profile);
+export default connect(mapStateToProps, { getCurrentProfile })(UserProfile);

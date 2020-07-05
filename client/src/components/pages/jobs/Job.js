@@ -10,7 +10,7 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
   }, [getJob, match.params.id]);
 
   return (
-    <div class="single-job-page padd-2" style={{}}>
+    <div class="single-job-page padd-2" style={{ boxSizing: "border-box" }}>
       {!loading && job !== null ? (
         <Fragment>
           <div className="row">

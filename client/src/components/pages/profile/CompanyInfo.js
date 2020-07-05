@@ -1,32 +1,18 @@
 import React, { Fragment } from "react";
-import { getCurrentProfile } from "../../../actions/profile";
+import { getProfileById } from "../../../actions/profile";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import Spinner from "../../layout/Spinner";
 
-const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
+const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
   useEffect(() => {
-    getCurrentProfile();
-  }, [getCurrentProfile]);
-  console.log();
+    getProfileById(match.params.id);
+  }, [getProfileById, match.params.id]);
 
   return (
     <div class="single-job-page padd-2" style={{ boxSizing: "border-box" }}>
       {!loading && profile !== null ? (
         <Fragment>
-          <div className="profile-wrapper marginbottom-1 ">
-            <h2 class="padd-1">welcome {user ? user.name : "hey"}</h2>
-
-            <div class="links padd-1 ">
-              <button type="button" class="btn btn-success mx-1 my-1">
-                {profile.companyName ? "edit" : "create"} profile
-              </button>
-              <button type="button" class="btn btn-success mx-1 my-1">
-                add new job
-              </button>
-            </div>
-          </div>
-
           <div className="row">
             <div className="col-8">
               <div className="profile-wrapper  ">
@@ -42,7 +28,7 @@ const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
               <div className="profile-wrapper  margintop-1 ">
                 <div className="padd-2">
                   <h3>jobs published:</h3>
-                  {user.jobsPublished.map((job) => {
+                  {profile.user.jobsPublished.map((job) => {
                     return <h3>{job.title}</h3>;
                   })}
                 </div>
@@ -77,7 +63,6 @@ const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
 const mapStateToProps = (state) => ({
   profile: state.profile.profile,
   loading: state.profile.loading,
-  user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(EmployerProfile);
+export default connect(mapStateToProps, { getProfileById })(CompanyInfo);

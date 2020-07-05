@@ -15,6 +15,8 @@ import SignUpUser from "./components/pages/auth/SignUpUser";
 import Job from "./components/pages/jobs/Job";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
+import EmployerProfile from "./components/pages/profile/EmployerProfile";
+import CompanyInfo from "./components/pages/profile/CompanyInfo";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -35,8 +37,10 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/jobs" exact component={Jobs} />
             <Route path="/job/:id" exact component={Job} />
+            <Route path="/company-info/:id" exact component={CompanyInfo} />
             <Route path="/profile" exact component={UserProfile} />
             <Route path="/add-job" exact component={MyApplications} />
+            <Route path="/emp-profile" exact component={EmployerProfile} />
             {/* <Route path="/signin" exact component={SignIn} /> */}
             <Route path="/login" exact component={Login} />
             <Route path="/signup/employer" exact component={SignUpEmployer} />
