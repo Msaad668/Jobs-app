@@ -1,5 +1,9 @@
 import React, { Fragment } from "react";
-import { getCurrentProfile } from "../../../actions/profile";
+import {
+  getCurrentProfile,
+  deleteEducation,
+  deleteExperience,
+} from "../../../actions/profile";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import Spinner from "../../layout/Spinner";
@@ -7,7 +11,14 @@ import Moment from "react-moment";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
+const UserProfile = ({
+  user,
+  profile,
+  getCurrentProfile,
+  deleteEducation,
+  deleteExperience,
+  loading,
+}) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
@@ -16,7 +27,7 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
   if (!loading && profile !== null && profile.isEmployer === true) {
     return (
       <div className="user-profile">
-        <h1 class="text-center p-4">
+        <h1 class="text-center  p-4">
           not authorized to get an employer profile
         </h1>
       </div>
@@ -25,7 +36,7 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
 
   return (
     <div class="user-profile">
-      <div class="container p-1">
+      <div class="container padd-2">
         {loading && profile === null ? (
           <Spinner />
         ) : (
@@ -33,18 +44,30 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
             <h2 class="py-2">welcome {user ? user.name : "hey"}</h2>
 
             <div class="links py-2">
-              <Link to="/create-edit-user-profile" type="button" class="btn btn-success mx-2">
+              <Link
+                to="/create-edit-user-profile"
+                type="button"
+                class="btn btn-success mx-2"
+              >
                 {profile.companyName ? "edit" : "create"} profile
               </Link>
-              <button type="button" class="btn btn-success mx-2">
+              <Link
+                to="/profile/add-experience"
+                type="button"
+                class="btn btn-success mx-2"
+              >
                 add experience
-              </button>
-              <button type="button" class="btn btn-success mx-2">
+              </Link>
+              <Link
+                to="/profile/add-education"
+                type="button"
+                class="btn btn-success mx-2"
+              >
                 add education
-              </button>
+              </Link>
             </div>
 
-            <div class="profile-wrapper shadow w-75 my-3">
+            <div class="profile-wrapper shadow  my-2">
               <div class="p-4">
                 <h2 class="text-center p-2">main information</h2>
                 <h3>Title : {profile.title ? profile.title : ""}</h3>
@@ -59,7 +82,7 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
               </div>
             </div>
 
-            <div class="profile-wrapper shadow w-75 my-3">
+            <div class="profile-wrapper shadow  my-3">
               <div class="p-4">
                 <h2 class="text-center p-2">skills</h2>
 
@@ -75,7 +98,7 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
               </div>
             </div>
 
-            <div class="profile-wrapper shadow w-75 my-3">
+            <div class="profile-wrapper shadow  my-3">
               <div class="p-4">
                 <h2 class="text-center p-2">Education</h2>
                 {profile.education.length > 0 ? (
@@ -106,6 +129,12 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
                         <p>
                           <strong>Description: </strong> {education.description}
                         </p>
+                        <button
+                          onClick={() => deleteEducation(education._id)}
+                          className="btn btn-danger"
+                        >
+                          Delete education
+                        </button>
                       </div>
                     ))}
                   </Fragment>
@@ -115,7 +144,7 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
               </div>
             </div>
 
-            <div class="profile-wrapper shadow w-75 my-3">
+            <div class="profile-wrapper shadow  my-3">
               <div class="p-4">
                 <h2 class="text-center p-2">Experience</h2>
                 {profile.experience.length > 0 ? (
@@ -148,6 +177,13 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
                           <strong>Description: </strong>{" "}
                           {experience.description}
                         </p>
+                        <button
+                          onClick={() => deleteExperience(experience._id)}
+                          className="btn btn-danger"
+                        >
+                          Delete experience
+                        </button>
+                        <hr />
                       </div>
                     ))}
                   </Fragment>
@@ -169,4 +205,8 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(UserProfile);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  deleteEducation,
+  deleteExperience,
+})(UserProfile);
