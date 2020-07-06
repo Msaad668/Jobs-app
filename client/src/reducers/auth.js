@@ -5,6 +5,8 @@ import {
   LOGOUT,
   EMPLOYER_REGISTER_SUCCESS,
   USER_REGISTER_SUCCESS,
+  DELETE_APPLICATION,
+  APPLIED_TO_JOB,
 } from "../actions/types";
 
 const initialState = {
@@ -24,6 +26,28 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload,
+      };
+    case DELETE_APPLICATION:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: {
+          ...state.user,
+          jobsAppliedTo: state.user.jobsAppliedTo.filter(
+            (job) => job.application !== payload
+          ),
+        },
+      };
+    case APPLIED_TO_JOB:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: {
+          ...state.user,
+          jobsAppliedTo: payload,
+        },
       };
     case EMPLOYER_REGISTER_SUCCESS:
       if (payload.token) {

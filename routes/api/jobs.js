@@ -196,11 +196,6 @@ router.put("/:id", [auth, checkObjectId("id")], async (req, res) => {
 // @desc     apply to a job
 // @access   Private
 router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
   try {
     const user = await User.findById(req.user.id).select("-password");
 
@@ -223,7 +218,7 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
 
     //check if there is a job in db
     if (!job) {
-      return res.status(401).json({ msg: "job not found" });
+      return res.status(401).json({ errors: [{ msg: "job not found" }] });
     }
 
     //check if user already applied to the job
@@ -232,7 +227,9 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
         (application) => application.user.toString() === req.user.id
       )
     ) {
-      return res.status(400).json({ msg: "user already applied" });
+      return res
+        .status(400)
+        .json({ errors: [{ msg: "you allready applied to the job" }] });
     }
 
     const newApplication = {
@@ -256,7 +253,7 @@ router.post("/apply/:id", [auth, checkObjectId("id")], async (req, res) => {
 
     await user.save();
 
-    res.json(job.applications);
+    res.json(user.jobsAppliedTo);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
@@ -337,7 +334,7 @@ router.get(
 );
 
 // @route     PUT api/jobs/:id/in_consideration/:application_id
-// @desc      Update job by id
+// @desc      put an applicant in consideration
 // @access    Private
 router.put(
   "/:id/in_consideration/:application_id",
@@ -393,7 +390,7 @@ router.put(
 );
 
 // @route     PUT api/jobs/:id/not_selected/:application_id
-// @desc      Update job by id
+// @desc      not select an applicant
 // @access    Private
 router.put(
   "/:id/not_selected/:application_id",

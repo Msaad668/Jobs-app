@@ -15,3 +15,5 @@ export const PROFILE_ERROR = "PROFILE_ERROR";
 export const GET_JOBS = "GET_JOBS";
 export const GET_JOB = "GET_JOB";
 export const JOB_ERROR = "JOB_ERROR";
+export const DELETE_APPLICATION = "DELETE_APPLICATION";
+export const APPLIED_TO_JOB = "APPLIED_TO_JOB";

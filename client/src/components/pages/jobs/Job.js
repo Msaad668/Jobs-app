@@ -1,10 +1,10 @@
 import React, { useEffect, Fragment } from "react";
-import { getJob } from "../../../actions/jobs";
+import { getJob, applyToJob } from "../../../actions/jobs";
 import { connect } from "react-redux";
 import Spinner from "../../layout/Spinner";
 import { Link } from "react-router-dom";
 
-const Job = ({ job: { job, loading }, getJob, match }) => {
+const Job = ({ job: { job, loading }, getJob, applyToJob, match }) => {
   useEffect(() => {
     getJob(match.params.id);
   }, [getJob, match.params.id]);
@@ -18,7 +18,10 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
               <div className="profile-wrapper  ">
                 <div className="padd-2" style={{ fontSize: "1.5rem" }}>
                   <p>{job.title}</p>
-                  <Link to="/" className="text-decoration-none">
+                  <Link
+                    to={`/company-info/${job.company}`}
+                    className="text-decoration-none"
+                  >
                     {job.employerName}
                   </Link>
                   <p className="text-muted">{job.locationOfTheJob}</p>
@@ -28,7 +31,8 @@ const Job = ({ job: { job, loading }, getJob, match }) => {
                       <button
                         type="button"
                         style={{ fontSize: "1.4rem", minWidth: "25vh" }}
-                        className="btn btn-success "
+                        className={`btn btn-success `}
+                        onClick={() => applyToJob(job._id)}
                       >
                         Apply for job
                       </button>
@@ -102,4 +106,4 @@ const mapStateToProps = (state) => ({
   job: state.job,
 });
 
-export default connect(mapStateToProps, { getJob })(Job);
+export default connect(mapStateToProps, { getJob, applyToJob })(Job);

@@ -6,7 +6,7 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./components/layout/Home";
 import Jobs from "./components/pages/jobs/Jobs";
 import UserProfile from "./components/pages/profile/UserProfile";
-import MyApplications from "./components/pages/MyApplications";
+import MyApplications from "./components/pages/applications/MyApplications";
 import store from "./store";
 import Alert from "./components/layout/Alert";
 import Login from "./components/pages/auth/Login";
@@ -22,7 +22,6 @@ import CreateUserProfileForm from "./components/pages/profile/CreateUserProfileF
 
 import AddExperienceForm from "./components/pages/profile/AddExperienceForm";
 import AddEducationForm from "./components/pages/profile/AddEducationForm";
-
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -51,8 +50,16 @@ function App() {
               component={CreateUserProfileForm}
             />
             <Route path="/add-job" exact component={MyApplications} />
-            <Route path="/profile/add-education" exact component={AddEducationForm} />
-            <Route path="/profile/add-experience" exact component={AddExperienceForm} />
+            <Route
+              path="/profile/add-education"
+              exact
+              component={AddEducationForm}
+            />
+            <Route
+              path="/profile/add-experience"
+              exact
+              component={AddExperienceForm}
+            />
             <Route path="/emp-profile" exact component={EmployerProfile} />
             <Route
               path="/create-edit-employer-profile"
@@ -63,7 +70,6 @@ function App() {
             <Route path="/login" exact component={Login} />
             <Route path="/signup/employer" exact component={SignUpEmployer} />
             <Route path="/signup/user" exact component={SignUpUser} />
-            
           </Switch>
         </Fragment>
       </Router>
