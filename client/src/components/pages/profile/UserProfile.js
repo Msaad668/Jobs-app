@@ -5,12 +5,23 @@ import { useEffect } from "react";
 import Spinner from "../../layout/Spinner";
 import Moment from "react-moment";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
   console.log();
+
+  if (!loading && profile !== null && profile.isEmployer === true) {
+    return (
+      <div className="user-profile">
+        <h1 class="text-center p-4">
+          not authorized to get an employer profile
+        </h1>
+      </div>
+    );
+  }
 
   return (
     <div class="user-profile">
@@ -22,9 +33,9 @@ const UserProfile = ({ user, profile, getCurrentProfile, loading }) => {
             <h2 class="py-2">welcome {user ? user.name : "hey"}</h2>
 
             <div class="links py-2">
-              <button type="button" class="btn btn-success mx-2">
+              <Link to="/create-edit-user-profile" type="button" class="btn btn-success mx-2">
                 {profile.companyName ? "edit" : "create"} profile
-              </button>
+              </Link>
               <button type="button" class="btn btn-success mx-2">
                 add experience
               </button>

@@ -33,7 +33,7 @@ const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
                     return (
                       <h3>
                         <Link
-                          to={`/job/${job._id}`}
+                          to={`/job/${job.job}`}
                           className="text-decoration-none font-weight-bolder"
                         >
                           {job.title}

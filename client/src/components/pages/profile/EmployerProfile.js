@@ -3,12 +3,20 @@ import { getCurrentProfile } from "../../../actions/profile";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import Spinner from "../../layout/Spinner";
+import { Link } from "react-router-dom";
 
 const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-  console.log();
+
+  if (!loading && profile !== null && profile.isEmployer === false) {
+    return (
+      <div className="user-profile">
+        <h1 class="text-center p-4">not authorized to get a user profile</h1>
+      </div>
+    );
+  }
 
   return (
     <div class="single-job-page padd-2" style={{ boxSizing: "border-box" }}>
@@ -18,9 +26,13 @@ const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
             <h2 class="padd-1">welcome {user ? user.name : "hey"}</h2>
 
             <div class="links padd-1 ">
-              <button type="button" class="btn btn-success mx-1 my-1">
+              <Link
+                to="/create-edit-employer-profile"
+                type="button"
+                class="btn btn-success mx-1 my-1"
+              >
                 {profile.companyName ? "edit" : "create"} profile
-              </button>
+              </Link>
               <button type="button" class="btn btn-success mx-1 my-1">
                 add new job
               </button>

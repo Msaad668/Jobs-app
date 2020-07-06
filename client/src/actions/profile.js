@@ -39,8 +39,8 @@ export const getProfileById = (userId) => async (dispatch) => {
   }
 };
 
-// Create or update profile
-export const createProfile = (formData, history, edit = false) => async (
+// Create or update user profile
+export const createUserProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
   try {
@@ -51,7 +51,7 @@ export const createProfile = (formData, history, edit = false) => async (
     };
 
     const res = await axios.post(
-      "http://localhost:5000/api/profile",
+      "http://localhost:5000/api/profile/user",
       formData,
       config
     );
@@ -63,9 +63,47 @@ export const createProfile = (formData, history, edit = false) => async (
 
     dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
 
-    if (!edit) {
-      history.push("/dashboard");
+    history.push("/emp-profile");
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+// Create or update employer profile
+export const createEmployerProfile = (
+  formData,
+  history,
+  edit = false
+) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post(
+      "http://localhost:5000/api/profile/employer",
+      formData,
+      config
+    );
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
+
+    history.push("/emp-profile");
   } catch (err) {
     const errors = err.response.data.errors;
 
