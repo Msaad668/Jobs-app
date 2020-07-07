@@ -13,6 +13,12 @@ export const getCurrentProfile = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -32,6 +38,11 @@ export const getProfileById = (userId) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -63,7 +74,7 @@ export const createUserProfile = (formData, history, edit = false) => async (
 
     dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
 
-    history.push("/emp-profile");
+    history.push("/profile");
   } catch (err) {
     const errors = err.response.data.errors;
 

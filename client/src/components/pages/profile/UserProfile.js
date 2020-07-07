@@ -9,7 +9,8 @@ import { useEffect } from "react";
 import Spinner from "../../layout/Spinner";
 import Moment from "react-moment";
 import moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { setAlert } from "../../../actions/alert";
 
 const UserProfile = ({
   user,
@@ -18,13 +19,13 @@ const UserProfile = ({
   deleteEducation,
   deleteExperience,
   loading,
+  setAlert,
 }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-  console.log();
 
-  if (!loading && profile !== null && profile.isEmployer === true) {
+  if (user.isCompany === true) {
     return (
       <div className="user-profile">
         <h1 class="text-center  p-4">not authorized to get a user profile</h1>
@@ -32,12 +33,15 @@ const UserProfile = ({
     );
   }
 
+  if (!loading && !profile) {
+    setAlert("please create a profile first", "success", 5000);
+    return <Redirect to="/create-edit-user-profile" />;
+  }
+
   return (
     <div class="user-profile">
       <div class="container padd-2">
-        {loading && profile === null ? (
-          <Spinner />
-        ) : (
+        {!loading && profile !== null ? (
           <Fragment>
             <h2 class="py-2">welcome {user ? user.name : "hey"}</h2>
 
@@ -47,7 +51,7 @@ const UserProfile = ({
                 type="button"
                 class="btn btn-success mx-2"
               >
-                {profile.companyName ? "edit" : "create"} profile
+                edit/create profile
               </Link>
               <Link
                 to="/profile/add-experience"
@@ -191,6 +195,8 @@ const UserProfile = ({
               </div>
             </div>
           </Fragment>
+        ) : (
+          <Spinner />
         )}
       </div>
     </div>
@@ -207,4 +213,5 @@ export default connect(mapStateToProps, {
   getCurrentProfile,
   deleteEducation,
   deleteExperience,
+  setAlert,
 })(UserProfile);

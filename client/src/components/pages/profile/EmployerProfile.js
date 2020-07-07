@@ -3,19 +3,33 @@ import { getCurrentProfile } from "../../../actions/profile";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import Spinner from "../../layout/Spinner";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { setAlert } from "../../../actions/alert";
 
-const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
+const EmployerProfile = ({
+  user,
+  profile,
+  getCurrentProfile,
+  loading,
+  setAlert,
+}) => {
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  if (!loading && profile !== null && profile.isEmployer === false) {
+  if (user && user.isCompany === false) {
     return (
       <div className="user-profile">
-        <h1 class="text-center  p-4">not authorized to get a user profile</h1>
+        <h1 class="text-center  p-4">
+          not authorized to get an employer profile
+        </h1>
       </div>
     );
+  }
+
+  if (!loading && !profile) {
+    setAlert("please create a profile first", "success", 5000);
+    return <Redirect to="/create-edit-employer-profile" />;
   }
 
   return (
@@ -96,4 +110,6 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(EmployerProfile);
+export default connect(mapStateToProps, { getCurrentProfile, setAlert })(
+  EmployerProfile
+);
