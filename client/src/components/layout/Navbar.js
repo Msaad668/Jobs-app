@@ -43,6 +43,11 @@ const Navbar = ({ logout }) => {
             </Link>
           </li>
           <li class="nav-item">
+            <Link class="nav-link" to="/jobs/myjobs">
+              my jobs
+            </Link>
+          </li>
+          <li class="nav-item">
             <Link class="nav-link" to="/signin">
               sign in
             </Link>

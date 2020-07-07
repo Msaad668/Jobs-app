@@ -204,20 +204,20 @@ router.get(
 // @route    get api/users/jobs/:id
 // @desc     get all jobs posted by an employer by userId
 // @access   private
-router.get("/jobs/:id", checkObjectId("id"), async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id).select("-password");
+// router.get("/jobs/:id", checkObjectId("id"), async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id).select("-password");
 
-    if (!user) {
-      return res.status(404).json({ msg: "user not found" });
-    }
+//     if (!user) {
+//       return res.status(404).json({ msg: "user not found" });
+//     }
 
-    res.json(user.jobsPublished);
-  } catch (err) {
-    console.error(err.message);
+//     res.json(user.jobsPublished);
+//   } catch (err) {
+//     console.error(err.message);
 
-    res.status(500).send("Server Error");
-  }
-});
+//     res.status(500).send("Server Error");
+//   }
+// });
 
 module.exports = router;
