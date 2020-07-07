@@ -2,11 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Spinner from "../../layout/Spinner";
-import { getJob } from "../../../actions/jobs";
+import { getJob, deleteJob } from "../../../actions/jobs";
 import { useEffect } from "react";
 import { loadUser } from "../../../actions/auth";
 
-const MyJobs = ({ user, loading, getJob, loadUser }) => {
+const MyJobs = ({ user, loading, getJob, loadUser, deleteJob }) => {
+  useEffect(() => {
+    loadUser();
+  }, [loadUser]);
+
   if (loading) {
     return (
       <div className="user-profile p-1">
@@ -40,7 +44,11 @@ const MyJobs = ({ user, loading, getJob, loadUser }) => {
                 >
                   update job
                 </Link>
-                <button type="button" class="btn btn-danger btn-lg margin-1">
+                <button
+                  onClick={() => deleteJob(job.job)}
+                  type="button"
+                  class="btn btn-danger btn-lg margin-1"
+                >
                   delete job
                 </button>
               </div>
@@ -57,4 +65,6 @@ const mapStateToProps = (state) => ({
   loading: state.auth.loading,
 });
 
-export default connect(mapStateToProps, { getJob, loadUser })(MyJobs);
+export default connect(mapStateToProps, { getJob, loadUser, deleteJob })(
+  MyJobs
+);
