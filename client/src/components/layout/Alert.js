@@ -7,10 +7,13 @@ const Alert = ({ alerts }) =>
   alerts.map((alert) => (
     <div
       key={alert.id}
-      class={`m-3 w-75 mx-auto alert alert-${alert.alertType}`}
+      class={` mx-auto  alert alert-${alert.alertType}`}
       role="alert"
+      style={{ marginBottom: "0px" }}
     >
-      {alert.msg}
+      <p class="marginleft-3" style={{ fontSize: "1.3rem" }}>
+        - {alert.msg}
+      </p>
     </div>
   ));
 
