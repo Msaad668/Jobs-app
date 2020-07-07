@@ -13,7 +13,7 @@ const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
   if (!loading && profile !== null && profile.isEmployer === false) {
     return (
       <div className="user-profile">
-        <h1 class="text-center p-4">not authorized to get a user profile</h1>
+        <h1 class="text-center  p-4">not authorized to get a user profile</h1>
       </div>
     );
   }
@@ -33,9 +33,13 @@ const EmployerProfile = ({ user, profile, getCurrentProfile, loading }) => {
               >
                 {profile.companyName ? "edit" : "create"} profile
               </Link>
-              <button type="button" class="btn btn-success mx-1 my-1">
+              <Link
+                to="/jobs/create-job"
+                type="button"
+                class="btn btn-success mx-1 my-1"
+              >
                 add new job
-              </button>
+              </Link>
             </div>
           </div>
 

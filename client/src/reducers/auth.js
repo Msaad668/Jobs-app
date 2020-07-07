@@ -7,6 +7,7 @@ import {
   USER_REGISTER_SUCCESS,
   DELETE_APPLICATION,
   APPLIED_TO_JOB,
+  CREATE_JOB,
 } from "../actions/types";
 
 const initialState = {
@@ -47,6 +48,16 @@ export default function (state = initialState, action) {
         user: {
           ...state.user,
           jobsAppliedTo: payload,
+        },
+      };
+    case CREATE_JOB:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: {
+          ...state.user,
+          jobsPublished: payload,
         },
       };
     case EMPLOYER_REGISTER_SUCCESS:

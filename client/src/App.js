@@ -22,6 +22,7 @@ import CreateUserProfileForm from "./components/pages/profile/CreateUserProfileF
 
 import AddExperienceForm from "./components/pages/profile/AddExperienceForm";
 import AddEducationForm from "./components/pages/profile/AddEducationForm";
+import JobForm from "./components/pages/jobs/JobForm";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -41,6 +42,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/jobs" exact component={Jobs} />
+            <Route path="/jobs/create-job" exact component={JobForm} />
             <Route path="/job/:id" exact component={Job} />
             <Route path="/company-info/:id" exact component={CompanyInfo} />
             <Route path="/profile" exact component={UserProfile} />

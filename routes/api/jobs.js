@@ -55,7 +55,9 @@ router.post(
         title,
         description,
         jobUrl,
-        jobRequirements,
+        jobRequirements: Array.isArray(jobRequirements)
+          ? jobRequirements
+          : jobRequirements.split("/").map((skill) => " " + skill.trim()),
         employerName: profile.companyName,
         company: req.user.id,
         expNeeded,
@@ -65,7 +67,7 @@ router.post(
         locationOfTheJob,
       });
 
-      const job = await newJob.save();
+      await newJob.save();
 
       const publishedJob = {
         job: newJob._id,
@@ -76,7 +78,7 @@ router.post(
 
       await user.save();
 
-      res.json(job);
+      res.json(user.jobsPublished);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Server Error");

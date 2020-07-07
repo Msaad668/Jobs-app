@@ -26,13 +26,13 @@ const jobSchema = new Schema({
   },
   jobType: {
     type: String,
-    enum: ["full time", "part time"],
+    enum: ["full time", "part time", "work from home"],
   },
   numberOfVacancies: {
     type: Number,
   },
   salary: {
-    type: Number,
+    type: String,
   },
   locationOfTheJob: {
     type: String,
