@@ -5,6 +5,7 @@ import {
   DELETE_APPLICATION,
   APPLIED_TO_JOB,
   CREATE_JOB,
+  UPDATE_JOB,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -133,7 +134,44 @@ export const createJob = (formData, history) => async (dispatch) => {
 
     dispatch(setAlert("job created successfully", "success"));
 
-    history.push("/emp-profile");
+    history.push("/jobs/myjobs");
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: JOB_ERROR,
+      payload: { msg: err.response, status: err.response },
+    });
+  }
+};
+
+// update a job as an employer
+export const updateJob = (id, formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      `http://localhost:5000/api/jobs/${id}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_JOB,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("job updated successfully", "success"));
+
+    history.push("/jobs/myjobs");
   } catch (err) {
     const errors = err.response.data.errors;
 

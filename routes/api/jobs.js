@@ -107,7 +107,7 @@ router.get("/:id", checkObjectId("id"), async (req, res) => {
     const job = await Job.findById(req.params.id);
 
     if (!job) {
-      return res.status(404).json({ msg: "job not found" });
+      return res.status(404).json({ errors: [{ msg: "job not found" }] });
     }
 
     res.json(job);
@@ -128,12 +128,12 @@ router.delete("/:id", [auth, checkObjectId("id")], async (req, res) => {
     const job = await Job.findById(req.params.id);
 
     if (!job) {
-      return res.status(404).json({ msg: "job not found" });
+      return res.status(404).json({ errors: [{ msg: "job not found" }] });
     }
 
     // Check user
     if (job.company.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "User not authorized" });
+      return res.status(401).json({ errors: [{ msg: "user not authorized" }] });
     }
 
     await job.remove();
@@ -157,27 +157,43 @@ router.delete("/:id", [auth, checkObjectId("id")], async (req, res) => {
 // @desc      Update job by id
 // @access    Private
 router.put("/:id", [auth, checkObjectId("id")], async (req, res) => {
-  const { title, description, jobUrl, skills } = req.body;
+  const {
+    title,
+    description,
+    jobUrl,
+    jobRequirements,
+    expNeeded,
+    jobType,
+    numberOfVacancies,
+    salary,
+    locationOfTheJob,
+  } = req.body;
 
   // Build newjob object
   const jobFields = {};
   if (title) jobFields.title = title;
   if (description) jobFields.description = description;
   if (jobUrl) jobFields.jobUrl = jobUrl;
-  if (skills.length !== 0) jobFields.skills = skills;
+  if (expNeeded) jobFields.expNeeded = expNeeded;
+  if (jobType) jobFields.jobType = jobType;
+  if (numberOfVacancies) jobFields.numberOfVacancies = numberOfVacancies;
+  if (salary) jobFields.salary = salary;
+  if (locationOfTheJob) jobFields.locationOfTheJob = locationOfTheJob;
+  if (jobRequirements.length !== 0) jobFields.jobRequirements = jobRequirements;
 
   try {
     let job = await Job.findById(req.params.id);
+    // let user = await User.findById(req.user.id);
 
     if (!job) {
-      return res.status(401).json({ msg: "job not found" });
+      return res.status(401).json({ errors: [{ msg: "job not found" }] });
     }
 
     // Make sure user owns Job
     if (job.company.toString() !== req.user.id) {
       return res
         .status(401)
-        .json({ msg: "user not authorized to edit the job" });
+        .json({ errors: [{ msg: "user not authorized to edit the job" }] });
     }
 
     editedJob = await Job.findByIdAndUpdate(

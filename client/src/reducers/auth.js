@@ -60,6 +60,20 @@ export default function (state = initialState, action) {
           jobsPublished: payload,
         },
       };
+    // case UPDATE_JOB:
+    //   return {
+    //     ...state,
+    //     isAuthenticated: true,
+    //     loading: false,
+    //     user: {
+    //       ...state.user,
+    //       jobsPublished: state.user.jobsPublished.map((job) => {
+    //         if (job.job === payload.job) {
+    //           job.title = payload.title;
+    //         }
+    //       }),
+    //     },
+    //   };
     case EMPLOYER_REGISTER_SUCCESS:
       if (payload.token) {
         localStorage.setItem("token", payload.token);

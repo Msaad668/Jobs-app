@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
+import { loadUser } from "./actions/auth";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Home from "./components/layout/Home";
@@ -13,7 +14,6 @@ import Login from "./components/pages/auth/Login";
 import SignUpEmployer from "./components/pages/auth/SignUpEmployer";
 import SignUpUser from "./components/pages/auth/SignUpUser";
 import Job from "./components/pages/jobs/Job";
-import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import EmployerProfile from "./components/pages/profile/EmployerProfile";
 import CompanyInfo from "./components/pages/profile/CompanyInfo";
@@ -24,6 +24,7 @@ import AddExperienceForm from "./components/pages/profile/AddExperienceForm";
 import AddEducationForm from "./components/pages/profile/AddEducationForm";
 import JobForm from "./components/pages/jobs/JobForm";
 import MyJobs from "./components/pages/jobs/MyJobs";
+import EditJobForm from "./components/pages/jobs/EditJobForm";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -45,6 +46,11 @@ function App() {
             <Route path="/jobs" exact component={Jobs} />
             <Route path="/jobs/create-job" exact component={JobForm} />
             <Route path="/jobs/myjobs" exact component={MyJobs} />
+            <Route
+              path="/jobs/myjobs/update-job/:id"
+              exact
+              component={EditJobForm}
+            />
             <Route path="/job/:id" exact component={Job} />
             <Route path="/company-info/:id" exact component={CompanyInfo} />
             <Route path="/profile" exact component={UserProfile} />

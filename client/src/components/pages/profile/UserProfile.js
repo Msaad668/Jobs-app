@@ -27,9 +27,7 @@ const UserProfile = ({
   if (!loading && profile !== null && profile.isEmployer === true) {
     return (
       <div className="user-profile">
-        <h1 class="text-center  p-4">
-          not authorized to get an employer profile
-        </h1>
+        <h1 class="text-center  p-4">not authorized to get a user profile</h1>
       </div>
     );
   }
