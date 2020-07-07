@@ -33,9 +33,9 @@ const MyJobs = ({ user, loading, getJob, loadUser, deleteJob }) => {
                 <h3 className="text-primary margin-1">
                   <Link to={`/job/${job.job}`}>{job.title}</Link>
                 </h3>
-                <button type="button" class="btn btn-success btn-lg margin-1">
+                <Link to={`/jobs/myjobs/applications/${job.job}`} type="button" class="btn btn-success btn-lg margin-1">
                   see applications
-                </button>
+                </Link>
                 <Link
                   to={`/jobs/myjobs/update-job/${job.job}`}
                   type="button"

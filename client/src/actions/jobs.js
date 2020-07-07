@@ -7,6 +7,7 @@ import {
   CREATE_JOB,
   UPDATE_JOB,
   DELETE_JOB,
+  GET_APPLICATIONS
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -198,6 +199,30 @@ export const deleteJob = (id) => async (dispatch) => {
     });
 
     dispatch(setAlert("job deleted successfully", "success"));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: JOB_ERROR,
+      payload: { msg: err.response, status: err.response },
+    });
+  }
+};
+// get all applications of a job
+export const getApplications = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `http://localhost:5000/api/jobs/applications/${id}`
+    );
+
+    dispatch({
+      type: GET_APPLICATIONS,
+      payload: res.data,
+    });
   } catch (err) {
     const errors = err.response.data.errors;
 
