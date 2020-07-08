@@ -79,13 +79,18 @@ const Navbar = ({ auth: { isAuthenticated, loading, isEmployer }, logout }) => {
         </Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to="/signin">
-          sign in
+        <Link class="nav-link" to="/login">
+          login
         </Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to="/register">
-          Register
+        <Link class="nav-link" to="/signup/user">
+          Register as user
+        </Link>
+      </li>
+      <li class="nav-item">
+        <Link class="nav-link" to="/signup/employer">
+          Register as employer
         </Link>
       </li>
     </ul>
@@ -93,7 +98,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, isEmployer }, logout }) => {
 
   return (
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      <Link to="/" class="navbar-brand">
+      <Link to="/" class="navbar-brand" style={{ fontSize: "1.5rem" }}>
         <i className="fas fa-address-book" /> jobs Portal
       </Link>
       <button

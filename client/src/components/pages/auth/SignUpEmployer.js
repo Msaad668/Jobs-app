@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { registerEmployer } from "../../../actions/auth";
 import { setAlert } from "../../../actions/alert";
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const SignUpEmployer = ({ isAuthenticated, setAlert, registerEmployer }) => {
@@ -108,13 +108,14 @@ const SignUpEmployer = ({ isAuthenticated, setAlert, registerEmployer }) => {
             >
               Submit
             </button>
-            <button
+            <Link
+              to="/"
               type="button"
               style={{ fontSize: "1.2rem" }}
               className="btn btn-success btn-block search-button my-3"
             >
               back to Homepage
-            </button>
+            </Link>
           </div>
         </div>
       </form>

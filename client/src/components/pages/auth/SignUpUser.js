@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { registerUser } from "../../../actions/auth";
 import { setAlert } from "../../../actions/alert";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const SignUpUser = ({ isAuthenticated, setAlert, registerUser }) => {
   const [formData, setFormData] = useState({
@@ -107,13 +107,14 @@ const SignUpUser = ({ isAuthenticated, setAlert, registerUser }) => {
             >
               Submit
             </button>
-            <button
+            <Link
+              to="/"
               type="button"
               style={{ fontSize: "1.2rem" }}
               className="btn btn-success btn-block search-button my-3"
             >
               back to Homepage
-            </button>
+            </Link>
           </div>
         </div>
       </form>

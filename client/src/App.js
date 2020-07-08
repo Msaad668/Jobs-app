@@ -48,7 +48,11 @@ function App() {
             <Route path="/jobs" exact component={Jobs} />
             <Route path="/jobs/create-job" exact component={JobForm} />
             <Route path="/jobs/myjobs" exact component={MyJobs} />
-            <Route path="/jobs/myjobs/applications/user-info/:id" exact component={UserInfo} />
+            <Route
+              path="/jobs/myjobs/applications/user-info/:id"
+              exact
+              component={UserInfo}
+            />
             <Route
               path="/jobs/myjobs/applications/:id"
               exact
@@ -84,7 +88,6 @@ function App() {
               exact
               component={CreateEmployerProfileForm}
             />
-            {/* <Route path="/signin" exact component={SignIn} /> */}
             <Route path="/login" exact component={Login} />
             <Route path="/signup/employer" exact component={SignUpEmployer} />
             <Route path="/signup/user" exact component={SignUpUser} />
