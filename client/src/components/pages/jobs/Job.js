@@ -3,8 +3,18 @@ import { getJob, applyToJob } from "../../../actions/jobs";
 import { connect } from "react-redux";
 import Spinner from "../../layout/Spinner";
 import { Link } from "react-router-dom";
+import { setAlert } from "../../../actions/alert";
 
-const Job = ({ job: { job, loading }, getJob, applyToJob, match }) => {
+const Job = ({
+  job: { job, loading },
+  getJob,
+  applyToJob,
+  match,
+  user,
+  isEmployer,
+  isAuthenticated,
+  setAlert,
+}) => {
   useEffect(() => {
     getJob(match.params.id);
   }, [getJob, match.params.id]);
@@ -14,7 +24,7 @@ const Job = ({ job: { job, loading }, getJob, applyToJob, match }) => {
       {!loading && job !== null ? (
         <Fragment>
           <div className="row">
-            <div className="col-8">
+            <div className="col-sm-8">
               <div className="profile-wrapper  ">
                 <div className="padd-2" style={{ fontSize: "1.5rem" }}>
                   <p>{job.title}</p>
@@ -27,69 +37,70 @@ const Job = ({ job: { job, loading }, getJob, applyToJob, match }) => {
                   <p className="text-muted">{job.locationOfTheJob}</p>
                   <hr />
                   <div class="row">
-                    <div class="col-8">
+                    <div class="col-sm-8">
                       <button
                         type="button"
                         style={{ fontSize: "1.4rem", minWidth: "25vh" }}
                         className={`btn btn-success `}
-                        onClick={() => applyToJob(job._id)}
+                        onClick={() =>
+                          !isAuthenticated
+                            ? setAlert(
+                                "you have to login/register as a user first",
+                                "danger",
+                                5000
+                              )
+                            : applyToJob(job._id)
+                        }
+                        disabled={isEmployer}
                       >
                         Apply for job
                       </button>
+                      <br />
+                      {isEmployer ? (
+                        <small style={{ fontSize: ".9rem" }}>
+                          you have to login as a user to apply
+                        </small>
+                      ) : null}
+
+                      <br />
                     </div>
                     <div
-                      class="col-4 "
+                      class="col-sm-4 m-1"
                       style={{ fontSize: "1.1rem", maxWidth: "16rem" }}
                     >
-                      <p>115 applicants for {job.vacancies} open position </p>
+                      <p>
+                        115 applicants for {job.numberOfVacancies} open{" "}
+                        {job.numberOfVacancies > 1 ? "positions" : "position"}{" "}
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="profile-wrapper  margintop-2 ">
+              <div className="profile-wrapper  my-2 ">
                 <div className="padd-2">
                   <h3>About the job:</h3>
-                  <p style={{ fontSize: "1.rem" }}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Obcaecati odit saepe exercitationem accusantium fugit
-                    laborum nihil tempore ratione error? Itaque consequatur odio
-                    reiciendis impedit cumque, quis vel nihil. Porro eum
-                    expedita soluta vitae dolorem? Consequuntur doloremque
-                    assumenda dolores laboriosam sit sed vel quaerat
-                    necessitatibus ullam ex repellat quis veritatis dolore
-                    commodi harum quia et, nulla, rerum excepturi.
-                    Exercitationem, dolor natus? kldjfj kfijeogeh weihfi;erhfrh
-                    hjfjh kjfdhkjehfrkj ejkhfjhefj jewhrfeh
-                  </p>
+                  <p style={{ fontSize: "1.rem" }}>{job.description}</p>
                   <h3>job requirements:</h3>
                   <ul style={{ fontSize: "1.2rem" }}>
-                    <li>wjkfdhkjwfhjfg</li>
-                    <li>wjkfdhkjwfhjfg</li>
-                    <li>wjkfdhkjwfhjfg</li>
-                    <li>wjkfdhkjwfhjfg</li>
-                    <li>wjkfdhkjwfhjfg</li>
-                    <li>wjkfdhkjwfhjfg</li>
+                    {job.jobRequirements[0].split(",").map((req) => {
+                      return <li>{req}</li>;
+                    })}
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div
-              className="col-4"
-              style={{ paddingLeft: "0", marginLeft: "0" }}
-            >
+            <div className="col-sm-4">
               <div className="profile-wrapper">
                 <div className="padd-2" style={{ fontSize: "1.1rem" }}>
-                  <p>Experience needed : jkhfsdfg{job.expNeeded}</p>
+                  <p>Experience needed : {job.expNeeded}</p>
                   <hr />
-                  <p>salary : 46454{job.salary}</p>
+                  <p>salary : {job.salary}</p>
                   <hr />
-                  <p>jobType : full time{job.jobType}</p>
+                  <p>jobType : {job.jobType}</p>
                   <hr />
                   <p>vacancies : {job.numberOfVacancies}</p>
-                  <hr />
-                  <p>career level : {job.expNeeded}</p>
                 </div>
               </div>
             </div>
@@ -104,6 +115,9 @@ const Job = ({ job: { job, loading }, getJob, applyToJob, match }) => {
 
 const mapStateToProps = (state) => ({
   job: state.job,
+  user: state.auth.user,
+  isAuthenticated: state.auth.isAuthenticated,
+  isEmployer: state.auth.isEmployer,
 });
 
-export default connect(mapStateToProps, { getJob, applyToJob })(Job);
+export default connect(mapStateToProps, { getJob, applyToJob, setAlert })(Job);

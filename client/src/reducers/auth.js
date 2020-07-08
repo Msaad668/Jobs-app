@@ -129,6 +129,8 @@ export default function (state = initialState, action) {
         ...state,
         token: null,
         isAuthenticated: false,
+        isEmployer: false,
+        user: null,
         loading: false,
       };
     default:
