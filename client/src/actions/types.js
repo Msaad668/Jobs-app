@@ -22,3 +22,5 @@ export const CREATE_JOB = "CREATE_JOB";
 export const UPDATE_JOB = "UPDATE_JOB";
 export const DELETE_JOB = "DELETE_JOB";
 export const GET_APPLICATIONS = "GET_APPLICATIONS";
+export const PUT_IN_CONSIDERATION = "PUT_IN_CONSIDERATION";
+export const NOT_SELECT = "NOT_SELECT";

@@ -8,6 +8,8 @@ import {
   UPDATE_JOB,
   DELETE_JOB,
   GET_APPLICATIONS,
+  PUT_IN_CONSIDERATION,
+  NOT_SELECT
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -238,7 +240,7 @@ export const getApplications = (id) => async (dispatch) => {
 };
 
 // put an applicant in consideration
-export const putInConsideration = (id, formData, history) => async (
+export const putInConsideration = (jobId, application_id, history) => async (
   dispatch
 ) => {
   try {
@@ -249,19 +251,69 @@ export const putInConsideration = (id, formData, history) => async (
     };
 
     const res = await axios.put(
-      `http://localhost:5000/api/jobs/:id/in_consideration/:application_id`,
-      formData,
+      `http://localhost:5000/api/jobs/${jobId}/in_consideration/${application_id}`,
+      {},
       config
     );
 
     dispatch({
-      type: UPDATE_JOB,
-      payload: res.data,
+      type: PUT_IN_CONSIDERATION,
+      payload: res.data.applications,
     });
 
-    dispatch(setAlert("job updated successfully", "success"));
+    dispatch(
+      setAlert(
+        "applicant put in consideration successfully, the applicant will be able to view the job status under his applications section",
+        "success",
+        6000
+      )
+    );
 
-    history.push("/jobs/myjobs");
+    history.push(`/jobs/myjobs/applications/${jobId}`);
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: JOB_ERROR,
+      payload: { msg: err.response, status: err.response },
+    });
+  }
+};
+// not select ann applicant
+export const notSelect = (jobId, application_id, history) => async (
+  dispatch
+) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      `http://localhost:5000/api/jobs/${jobId}/not_selected/${application_id}`,
+      {},
+      config
+    );
+
+    dispatch({
+      type: NOT_SELECT,
+      payload: res.data.applications,
+    });
+
+    dispatch(
+      setAlert(
+        "applicant NOT SELECTED successfully, the applicant will be able to view the job status under his applications section",
+        "warning",
+        6000
+      )
+    );
+
+    history.push(`/jobs/myjobs/applications/${jobId}`);
   } catch (err) {
     const errors = err.response.data.errors;
 

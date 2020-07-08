@@ -3,6 +3,8 @@ import {
   JOB_ERROR,
   GET_JOB,
   GET_APPLICATIONS,
+  PUT_IN_CONSIDERATION,
+  NOT_SELECT,
 } from "../actions/types";
 
 const initialState = {
@@ -24,6 +26,13 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case GET_APPLICATIONS:
+      return {
+        ...state,
+        applications: payload,
+        loading: false,
+      };
+    case PUT_IN_CONSIDERATION:
+    case NOT_SELECT:
       return {
         ...state,
         applications: payload,

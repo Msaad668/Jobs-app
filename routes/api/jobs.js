@@ -339,7 +339,7 @@ router.get(
       }
 
       if (job.company.toString() !== req.user.id) {
-        return res.status(404).json({ msg: "not authorized" });
+        return res.status(404).json({ errors: [{ msg: "not authorized" }] });
       }
 
       res.json(job.applications);
@@ -362,14 +362,12 @@ router.put(
       let job = await Job.findById(req.params.id);
 
       if (!job) {
-        return res.status(401).json({ msg: "job not found" });
+        return res.status(401).json({ errors: [{ msg: "job not found" }] });
       }
 
       // Make sure user owns Job
       if (job.company.toString() !== req.user.id) {
-        return res
-          .status(401)
-          .json({ msg: "user not authorized to edit the job" });
+        return res.status(401).json({ errors: [{ msg: "not authorized" }] });
       }
 
       const Application = job.applications.filter(
@@ -382,7 +380,7 @@ router.put(
         if (application.application.toString() === req.params.application_id) {
           application.status = "In consideration";
         } else {
-          return res.status(401).json({ msg: "job not found" });
+          return res.status(401).json({ errors: [{ msg: "job not found" }] });
         }
       });
 
@@ -391,9 +389,12 @@ router.put(
       job.applications.map((application) => {
         if (application._id.toString() === req.params.application_id) {
           application.status = "In consideration";
-        } else {
-          return res.status(401).json({ msg: "application not found" });
         }
+        //  else {
+        //   return res
+        //     .status(401)
+        //     .json({ errors: [{ msg: "application not found" }] });
+        // }
       });
 
       const savedJob = await job.save();
@@ -418,7 +419,7 @@ router.put(
       let job = await Job.findById(req.params.id);
 
       if (!job) {
-        return res.status(401).json({ msg: "job not found" });
+        return res.status(401).json({ errors: [{ msg: "job not found" }] });
       }
 
       // Make sure user owns Job
@@ -438,9 +439,11 @@ router.put(
         if (application.application.toString() === req.params.application_id) {
           application.status = "not selected";
         } else {
-          return res
-            .status(401)
-            .json({ msg: "application not found in the user jobsAppliedTo" });
+          return res.status(401).json({
+            errors: [
+              { msg: "application not found in the user jobs applied to" },
+            ],
+          });
         }
       });
 
@@ -449,9 +452,12 @@ router.put(
       job.applications.map((application) => {
         if (application._id.toString() === req.params.application_id) {
           application.status = "not selected";
-        } else {
-          return res.status(401).json({ msg: "application not found" });
         }
+        //  else {
+        //   return res
+        //     .status(401)
+        //     .json({ errors: [{ msg: "application not found" }] });
+        // }
       });
 
       const savedJob = await job.save();
