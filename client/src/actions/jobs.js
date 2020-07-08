@@ -7,7 +7,7 @@ import {
   CREATE_JOB,
   UPDATE_JOB,
   DELETE_JOB,
-  GET_APPLICATIONS
+  GET_APPLICATIONS,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -223,6 +223,45 @@ export const getApplications = (id) => async (dispatch) => {
       type: GET_APPLICATIONS,
       payload: res.data,
     });
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: JOB_ERROR,
+      payload: { msg: err.response, status: err.response },
+    });
+  }
+};
+
+// put an applicant in consideration
+export const putInConsideration = (id, formData, history) => async (
+  dispatch
+) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put(
+      `http://localhost:5000/api/jobs/:id/in_consideration/:application_id`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: UPDATE_JOB,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("job updated successfully", "success"));
+
+    history.push("/jobs/myjobs");
   } catch (err) {
     const errors = err.response.data.errors;
 

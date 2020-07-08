@@ -32,9 +32,13 @@ const Applications = ({ applications, loading, getApplications, match }) => {
                 <h3 className=" margin-1">
                   applicant name: <Link to={`/`}>{application.name}</Link>
                 </h3>
-                <button type="button" class="btn btn-secondary btn-lg margin-1">
+                <Link
+                  to={`/jobs/myjobs/applications/user-info/${application.user}`}
+                  type="button"
+                  class="btn btn-secondary btn-lg margin-1"
+                >
                   applicant profile
-                </button>
+                </Link>
                 <Link
                   to={`/`}
                   type="button"
