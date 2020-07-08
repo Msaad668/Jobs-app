@@ -5,6 +5,8 @@ import {
   GET_APPLICATIONS,
   PUT_IN_CONSIDERATION,
   NOT_SELECT,
+  FILTER_JOBS,
+  CLEAR_FILTER,
 } from "../actions/types";
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
   loading: true,
   error: {},
   applications: [],
+  filtered: [],
 };
 
 export default function (state = initialState, action) {
@@ -24,6 +27,19 @@ export default function (state = initialState, action) {
         ...state,
         jobs: payload,
         loading: false,
+      };
+    case FILTER_JOBS:
+      return {
+        ...state,
+        filtered: state.jobs.filter((job) =>
+          job.title.includes(payload) ? true : false
+        ),
+        loading: false,
+      };
+    case CLEAR_FILTER:
+      return {
+        ...state,
+        filtered: [],
       };
     case GET_APPLICATIONS:
       return {

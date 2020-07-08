@@ -10,14 +10,14 @@
 }
 
 .main1 {
-  padding-top: 3rem;
-  font-size: 5rem;
+  padding-top: 2rem;
+  font-size: 4rem;
   text-align: center;
 }
 
 .main2 {
   padding: 1rem 0;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
 }
 
@@ -224,4 +224,11 @@
 }
 .marginleft-5 {
   margin-left: 5vw;
+}
+
+.button-homepage {
+  display: block;
+  opacity: 0.8;
+  padding: 1rem;
+  font-size: 2rem;
 }

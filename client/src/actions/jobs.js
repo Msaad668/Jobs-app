@@ -9,7 +9,9 @@ import {
   DELETE_JOB,
   GET_APPLICATIONS,
   PUT_IN_CONSIDERATION,
-  NOT_SELECT
+  NOT_SELECT,
+  FILTER_JOBS,
+  CLEAR_FILTER,
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -30,6 +32,21 @@ export const getJobs = () => async (dispatch) => {
     });
   }
 };
+
+// filter jobs
+export const filterJobs = (text) => (dispatch) => {
+  dispatch({
+    type: FILTER_JOBS,
+    payload: text,
+  });
+};
+// clear filter jobs
+export const clearFilter = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_FILTER,
+  });
+};
+
 // Get a single job
 export const getJob = (jobId) => async (dispatch) => {
   try {

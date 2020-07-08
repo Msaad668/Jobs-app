@@ -1,67 +1,54 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { connect } from "react-redux";
+
 const Home = () => {
   return (
     <div class="home">
-      <div class="ml-auto buttons">
+      <div className="container">
+        <h1 class="main1">Jobs Portal</h1>
+        <p class="main2">Find the Best Jobs in Egypt</p>
+        <p class="main3">
+          Searching for vacancies and career opportunities? jobs portal helps{" "}
+          <br /> you in your job search.
+        </p>
+
+        <Link
+          to="/jobs"
+          type="button"
+          class="btn btn-secondary btn-lg btn-block search-button my-3"
+          style={{ maxWidth: "85vh", margin: "auto" }}
+        >
+          SEE ALL JOBS
+        </Link>
         <Link
           to="/login"
-          class="btn btn-outline-info btn-lg"
-          href="#"
-          role="button"
+          type="button"
+          class="btn btn-primary btn-lg btn-block search-button my-3"
+          style={{ maxWidth: "85vh", margin: "auto" }}
         >
-          Login
+          login
         </Link>
         <Link
           to="/signup/user"
-          class="btn btn-outline-primary btn-lg"
-          href="#"
-          role="button"
+          type="button"
+          class="btn btn-primary btn-lg btn-block search-button my-3"
+          style={{ maxWidth: "85vh", margin: "auto" }}
         >
-          Sign up
+          sign up as a user
         </Link>
         <Link
           to="/signup/employer"
-          class="btn btn-outline-success btn-lg"
-          href="#"
-          role="button"
+          type="button"
+          class="btn btn-success btn-lg btn-block search-button my-3"
+          style={{ maxWidth: "85vh", margin: "auto" }}
         >
-          Employer?
+          sign up as an employer
         </Link>
       </div>
-
-      <h1 class="main1">Jobs Portal</h1>
-      <p class="main2">Find the Best Jobs in Egypt</p>
-
-      <p class="main3">
-        Searching for vacancies and career opportunities? jobs portal helps{" "}
-        <br /> you in your job search.
-      </p>
-
-      <div className="search" style={{ maxWidth: "85vh", margin: "auto" }}>
-        <input
-          type="text"
-          class="form-control search-input my-2"
-          placeholder="Search jobs..."
-        />
-        <button
-          type="button"
-          class="btn btn-secondary btn-lg btn-block search-button"
-        >
-          SEARCH
-        </button>
-      </div>
-
-      <button
-        type="button"
-        class="btn btn-success btn-lg btn-block search-button my-5"
-        style={{ maxWidth: "85vh", margin: "auto" }}
-      >
-        SEE ALL JOBS
-      </button>
     </div>
   );
 };
 
-export default Home;
+export default connect(null, {})(Home);
