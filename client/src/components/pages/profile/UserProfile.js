@@ -25,7 +25,7 @@ const UserProfile = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  if (user.isCompany === true) {
+  if (user && user.isCompany === true) {
     return (
       <div className="user-profile">
         <h1 class="text-center  p-4">not authorized to get a user profile</h1>
@@ -33,7 +33,7 @@ const UserProfile = ({
     );
   }
 
-  if (!loading && !profile) {
+  if (loading === false && !profile) {
     setAlert("please create a profile first", "success", 5000);
     return <Redirect to="/create-edit-user-profile" />;
   }

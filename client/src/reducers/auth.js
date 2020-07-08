@@ -14,6 +14,7 @@ import {
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
+  isEmployer: null,
   loading: true,
   user: null,
 };
@@ -28,6 +29,7 @@ export default function (state = initialState, action) {
         isAuthenticated: true,
         loading: false,
         user: payload,
+        isEmployer: payload.isCompany,
       };
     case DELETE_APPLICATION:
       return {
@@ -95,6 +97,7 @@ export default function (state = initialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
+        isEmployer: true,
         loading: false,
       };
     case USER_REGISTER_SUCCESS:
@@ -105,6 +108,7 @@ export default function (state = initialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
+        isEmployer: false,
         loading: false,
       };
     case LOGIN_SUCCESS:
@@ -115,6 +119,7 @@ export default function (state = initialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
+
         loading: false,
       };
     case AUTH_ERROR:
