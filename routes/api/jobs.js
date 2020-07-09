@@ -379,8 +379,6 @@ router.put(
       user.jobsAppliedTo.map((application) => {
         if (application.application.toString() === req.params.application_id) {
           application.status = "In consideration";
-        } else {
-          return res.status(401).json({ errors: [{ msg: "job not found" }] });
         }
       });
 
@@ -438,12 +436,6 @@ router.put(
       user.jobsAppliedTo.map((application) => {
         if (application.application.toString() === req.params.application_id) {
           application.status = "not selected";
-        } else {
-          return res.status(401).json({
-            errors: [
-              { msg: "application not found in the user jobs applied to" },
-            ],
-          });
         }
       });
 
