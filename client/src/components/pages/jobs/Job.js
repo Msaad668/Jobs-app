@@ -10,7 +10,7 @@ const Job = ({
   getJob,
   applyToJob,
   match,
-  user,
+
   isEmployer,
   isAuthenticated,
   setAlert,
@@ -79,11 +79,12 @@ const Job = ({
 
               <div className="profile-wrapper  my-2 ">
                 <div className="padd-2">
-                  <h3>About the job:</h3>
-                  <p style={{ fontSize: "1.rem" }}>{job.description}</p>
-                  <h3>job requirements:</h3>
+                  <h2 class="">About the job:</h2>
+                  <p style={{ fontSize: "1.2rem" }}>{job.description}</p>
+                  <hr />
+                  <h2>job requirements:</h2>
                   <ul style={{ fontSize: "1.2rem" }}>
-                    {job.jobRequirements[0].split(",").map((req) => {
+                    {job.jobRequirements.map((req) => {
                       return <li>{req}</li>;
                     })}
                   </ul>
@@ -115,7 +116,7 @@ const Job = ({
 
 const mapStateToProps = (state) => ({
   job: state.job,
-  user: state.auth.user,
+
   isAuthenticated: state.auth.isAuthenticated,
   isEmployer: state.auth.isEmployer,
 });

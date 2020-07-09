@@ -17,7 +17,7 @@ const Jobs = ({
   useEffect(() => {
     clearFilter();
     getJobs();
-  }, [getJobs]);
+  }, [getJobs, clearFilter]);
 
   return (
     <div class="jobs">

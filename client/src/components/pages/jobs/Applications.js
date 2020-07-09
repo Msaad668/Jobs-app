@@ -48,7 +48,12 @@ const Applications = ({
             <div key={application._id} className="profile-wrapper my-2">
               <div className="padd-1">
                 <h3 className=" margin-1">
-                  applicant name: <Link to={`/`}>{application.name}</Link>
+                  applicant name:{" "}
+                  <Link
+                    to={`/jobs/myjobs/applications/user-info/${application.user}`}
+                  >
+                    {application.name}
+                  </Link>
                 </h3>
                 <h4 className="margin-1">
                   status:{" "}

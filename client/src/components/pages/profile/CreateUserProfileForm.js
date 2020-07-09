@@ -69,7 +69,7 @@ const CreateUserProfileForm = ({
         className="container
       "
       >
-        <h1 className="large text-primary">Edit Your Profile</h1>
+        <h1 className="large text-primary">create/Edit Your Profile</h1>
         <p className="lead">
           <i className="fas fa-user" /> Add some changes to your profile
         </p>

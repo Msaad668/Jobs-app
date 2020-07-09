@@ -33,7 +33,7 @@ const UserProfile = ({
     );
   }
 
-  if (loading === false && !profile) {
+  if (!loading && !profile) {
     setAlert("please create a profile first", "success", 5000);
     return <Redirect to="/create-edit-user-profile" />;
   }
@@ -43,27 +43,30 @@ const UserProfile = ({
       <div class="container padd-2">
         {!loading && profile !== null ? (
           <Fragment>
-            <h2 class="py-2">welcome {user ? user.name : "hey"}</h2>
+            <h2 class="py-2">welcome {user && user.name}</h2>
 
             <div class="links py-2">
               <Link
                 to="/create-edit-user-profile"
                 type="button"
-                class="btn btn-success mx-2"
+                class="btn btn-success btn-lg my-1 mr-2"
+                style={{ minWidth: "12rem", opacity: ".9" }}
               >
                 edit/create profile
               </Link>
               <Link
                 to="/profile/add-experience"
                 type="button"
-                class="btn btn-success mx-2"
+                class="btn btn-success btn-lg my-1 mr-2"
+                style={{ minWidth: "12rem", opacity: ".9" }}
               >
                 add experience
               </Link>
               <Link
                 to="/profile/add-education"
                 type="button"
-                class="btn btn-success mx-2"
+                class="btn btn-success btn-lg my-1 mr-2"
+                style={{ minWidth: "12rem", opacity: ".9" }}
               >
                 add education
               </Link>

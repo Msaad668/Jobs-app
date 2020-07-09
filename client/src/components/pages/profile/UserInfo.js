@@ -24,29 +24,29 @@ const UserInfo = ({
   }
 
   return (
-    <div class="user-profile">
+    <div class="user-profile padd-2">
       <div class="container padd-2">
         {!loading && userInfo !== null ? (
           <Fragment>
             <div class="links py-2">
               <Link
-                to="/create-edit-user-profile"
+                to="/"
                 type="button"
-                class="btn btn-secondary mx-2"
+                class="btn btn-secondary btn-lg my-1 mx-2"
               >
                 back to applications
               </Link>
               <Link
-                to="/profile/add-experience"
+                to="/"
                 type="button"
-                class="btn btn-success mx-2"
+                class="btn btn-success my-1 btn-lg mx-2"
               >
-                put applicant in consideration
+                put in consideration
               </Link>
               <Link
                 to="/profile/add-education"
                 type="button"
-                class="btn btn-danger mx-2"
+                class="btn btn-danger btn-lg my-1 mx-2"
               >
                 not select applicant
               </Link>

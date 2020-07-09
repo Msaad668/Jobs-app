@@ -36,7 +36,7 @@ const EmployerProfile = ({
     <div class="single-job-page padd-2" style={{ boxSizing: "border-box" }}>
       {!loading && profile !== null ? (
         <Fragment>
-          <div className="profile-wrapper marginbottom-1 ">
+          <div className="profile-wrapper marginbottom-1 mr-1 ">
             <h2 class="padd-1">welcome {user ? user.name : "hey"}</h2>
 
             <div class="links padd-1 ">
@@ -58,8 +58,8 @@ const EmployerProfile = ({
           </div>
 
           <div className="row">
-            <div className="col-8">
-              <div className="profile-wrapper  ">
+            <div className="col-sm-8">
+              <div className="profile-wrapper  mr-1">
                 <div className="padd-2" style={{ fontSize: "1.5rem" }}>
                   <h3 class="py-1">company name: {profile.companyName}</h3>
                   <hr />
@@ -69,7 +69,7 @@ const EmployerProfile = ({
                 </div>
               </div>
 
-              <div className="profile-wrapper  margintop-1 ">
+              <div className="profile-wrapper  margintop-1 mr-1">
                 <div className="padd-2">
                   <h3>jobs published:</h3>
                   {user.jobsPublished.map((job) => {
@@ -79,11 +79,8 @@ const EmployerProfile = ({
               </div>
             </div>
 
-            <div
-              className="col-4"
-              style={{ paddingLeft: "0", marginLeft: "0" }}
-            >
-              <div className="profile-wrapper">
+            <div className="col-sm-4">
+              <div className="profile-wrapper mr-1">
                 <div className="padd-2" style={{ fontSize: "1.1rem" }}>
                   <p>year founded : jkhfsdfg{profile.yearFounded}</p>
                   <hr />

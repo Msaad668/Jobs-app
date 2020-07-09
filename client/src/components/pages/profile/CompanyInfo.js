@@ -15,8 +15,8 @@ const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
       {!loading && profile !== null ? (
         <Fragment>
           <div className="row">
-            <div className="col-8">
-              <div className="profile-wrapper  ">
+            <div className="col-sm-8">
+              <div className="profile-wrapper my-2 mr-1">
                 <div className="padd-2" style={{ fontSize: "1.5rem" }}>
                   <h3 class="py-1">company name: {profile.companyName}</h3>
                   <hr />
@@ -26,38 +26,41 @@ const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
                 </div>
               </div>
 
-              <div className="profile-wrapper  margintop-1 ">
+              <div className="profile-wrapper  my-1 mr-1">
                 <div className="padd-2">
                   <h3>jobs published:</h3>
                   {profile.user.jobsPublished.map((job) => {
                     return (
-                      <h3>
-                        <Link
-                          to={`/job/${job.job}`}
-                          className="text-decoration-none font-weight-bolder"
-                        >
-                          {job.title}
-                        </Link>
-                      </h3>
+                      <div
+                        className="p-2 my-2"
+                        style={{
+                          border: "1px solid black",
+                          borderRadius: "1rem",
+                        }}
+                      >
+                        <h3>
+                          <Link
+                            to={`/job/${job.job}`}
+                            className="text-decoration-none font-weight-bolder "
+                          >
+                            {job.title}
+                          </Link>
+                        </h3>
+                      </div>
                     );
                   })}
                 </div>
               </div>
             </div>
 
-            <div
-              className="col-4"
-              style={{ paddingLeft: "0", marginLeft: "0" }}
-            >
-              <div className="profile-wrapper">
+            <div className="col-sm-4">
+              <div className="profile-wrapper my-1 mr-1">
                 <div className="padd-2" style={{ fontSize: "1.1rem" }}>
-                  <p>year founded : jkhfsdfg{profile.yearFounded}</p>
+                  <p>year founded : {profile.yearFounded}</p>
                   <hr />
-                  <p>website : 46454{profile.website}</p>
+                  <p>website : {profile.website}</p>
                   <hr />
-                  <p>
-                    number of employees : full time{profile.numberOfEmployees}
-                  </p>
+                  <p>number of employees : {profile.numberOfEmployees}</p>
                 </div>
               </div>
             </div>

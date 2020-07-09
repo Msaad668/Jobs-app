@@ -72,7 +72,7 @@ const CreateEmployerProfileForm = ({
         className="container
       "
       >
-        <h1 className="large text-primary">Edit Your Profile</h1>
+        <h1 className="large text-primary">create/Edit Your Profile</h1>
         <p className="lead">
           <i className="fas fa-user" /> Add some changes to your profile
         </p>
@@ -108,11 +108,11 @@ const CreateEmployerProfileForm = ({
             </small>
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="exampleInputPassword1">address</label>
             <input
               type="text"
               class="form-control"
-              placeholder="Location"
+              placeholder="your Location..."
               name="location"
               value={location}
               onChange={onChange}
