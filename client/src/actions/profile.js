@@ -6,7 +6,7 @@ import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, GET_USER } from "./types";
 // Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    const res = await axios.get("http://localhost:5000/api/profile/me");
+    const res = await axios.get("/api/profile/me");
 
     dispatch({
       type: GET_PROFILE,
@@ -29,9 +29,7 @@ export const getCurrentProfile = () => async (dispatch) => {
 // Get profile by ID
 export const getProfileById = (userId) => async (dispatch) => {
   try {
-    const res = await axios.get(
-      `http://localhost:5000/api/profile/user/${userId}`
-    );
+    const res = await axios.get(`/api/profile/user/${userId}`);
 
     dispatch({
       type: GET_PROFILE,
@@ -49,9 +47,7 @@ export const getUserProfileById = (userId) => async (dispatch) => {
   console.log(userId);
 
   try {
-    const res = await axios.get(
-      `http://localhost:5000/api/profile/user/${userId}`
-    );
+    const res = await axios.get(`/api/profile/user/${userId}`);
 
     dispatch({
       type: GET_USER,
@@ -76,11 +72,7 @@ export const createUserProfile = (formData, history, edit = false) => async (
       },
     };
 
-    const res = await axios.post(
-      "http://localhost:5000/api/profile/user",
-      formData,
-      config
-    );
+    const res = await axios.post("/api/profile/user", formData, config);
 
     dispatch({
       type: GET_PROFILE,
@@ -116,11 +108,7 @@ export const createEmployerProfile = (
       },
     };
 
-    const res = await axios.post(
-      "http://localhost:5000/api/profile/employer",
-      formData,
-      config
-    );
+    const res = await axios.post("/api/profile/employer", formData, config);
 
     dispatch({
       type: GET_PROFILE,
@@ -153,11 +141,7 @@ export const addExperience = (formData, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.put(
-      "http://localhost:5000/api/profile/experience",
-      formData,
-      config
-    );
+    const res = await axios.put("/api/profile/experience", formData, config);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -190,11 +174,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.put(
-      "http://localhost:5000/api/profile/education",
-      formData,
-      config
-    );
+    const res = await axios.put("/api/profile/education", formData, config);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -221,9 +201,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
 // Delete experience
 export const deleteExperience = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(
-      `http://localhost:5000/api/profile/experience/${id}`
-    );
+    const res = await axios.delete(`/api/profile/experience/${id}`);
 
     dispatch({
       type: UPDATE_PROFILE,
@@ -242,9 +220,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 // Delete education
 export const deleteEducation = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(
-      `http://localhost:5000/api/profile/education/${id}`
-    );
+    const res = await axios.delete(`/api/profile/education/${id}`);
 
     dispatch({
       type: UPDATE_PROFILE,

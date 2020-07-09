@@ -19,7 +19,7 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("http://localhost:5000/api/auth");
+    const res = await axios.get("/api/auth");
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -43,7 +43,7 @@ export const registerEmployer = (FormData) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      "http://localhost:5000/api/users/employer",
+      "/api/users/employer",
       FormData,
       config
     );
@@ -75,7 +75,7 @@ export const registerUser = (FormData) => async (dispatch) => {
       },
     };
     const res = await axios.post(
-      "http://localhost:5000/api/users",
+      "/api/users",
       FormData,
       config
     );
@@ -110,7 +110,7 @@ export const login = (email, password) => async (dispatch) => {
     const body = { email, password };
 
     const res = await axios.post(
-      "http://localhost:5000/api/auth",
+      "/api/auth",
       body,
       config
     );

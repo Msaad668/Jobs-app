@@ -19,7 +19,7 @@ import { setAlert } from "./alert";
 // Get jobs
 export const getJobs = () => async (dispatch) => {
   try {
-    const res = await axios.get("http://localhost:5000/api/jobs");
+    const res = await axios.get("/api/jobs");
 
     dispatch({
       type: GET_JOBS,
@@ -50,7 +50,7 @@ export const clearFilter = () => (dispatch) => {
 // Get a single job
 export const getJob = (jobId) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/jobs/${jobId}`);
+    const res = await axios.get(`/api/jobs/${jobId}`);
 
     dispatch({
       type: GET_JOB,
@@ -76,7 +76,7 @@ export const applyToJob = (id) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      `http://localhost:5000/api/jobs/apply/${id}`,
+      `/api/jobs/apply/${id}`,
       {},
       config
     );
@@ -110,7 +110,7 @@ export const unapplyToJob = (job_id, application_id) => async (dispatch) => {
     // };
 
     await axios.delete(
-      `http://localhost:5000/api/jobs/unapply/${job_id}/${application_id}`
+      `/api/jobs/unapply/${job_id}/${application_id}`
     );
 
     dispatch({
@@ -143,7 +143,7 @@ export const createJob = (formData, history) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      `http://localhost:5000/api/jobs`,
+      `/api/jobs`,
       formData,
       config
     );
@@ -180,7 +180,7 @@ export const updateJob = (id, formData, history) => async (dispatch) => {
     };
 
     const res = await axios.put(
-      `http://localhost:5000/api/jobs/${id}`,
+      `/api/jobs/${id}`,
       formData,
       config
     );
@@ -210,7 +210,7 @@ export const updateJob = (id, formData, history) => async (dispatch) => {
 // delete a job
 export const deleteJob = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5000/api/jobs/${id}`);
+    await axios.delete(`/api/jobs/${id}`);
 
     dispatch({
       type: DELETE_JOB,
@@ -235,7 +235,7 @@ export const deleteJob = (id) => async (dispatch) => {
 export const getApplications = (id) => async (dispatch) => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/jobs/applications/${id}`
+      `/api/jobs/applications/${id}`
     );
 
     dispatch({
@@ -268,7 +268,7 @@ export const putInConsideration = (jobId, application_id, history) => async (
     };
 
     const res = await axios.put(
-      `http://localhost:5000/api/jobs/${jobId}/in_consideration/${application_id}`,
+      `/api/jobs/${jobId}/in_consideration/${application_id}`,
       {},
       config
     );
@@ -312,7 +312,7 @@ export const notSelect = (jobId, application_id, history) => async (
     };
 
     const res = await axios.put(
-      `http://localhost:5000/api/jobs/${jobId}/not_selected/${application_id}`,
+      `/api/jobs/${jobId}/not_selected/${application_id}`,
       {},
       config
     );
