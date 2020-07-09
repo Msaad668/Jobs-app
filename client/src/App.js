@@ -71,7 +71,7 @@ function App() {
               exact
               component={CreateUserProfileForm}
             />
-            <Route path="/add-job" exact component={MyApplications} />
+            <Route path="/my-applications" exact component={MyApplications} />
             <Route
               path="/profile/add-education"
               exact

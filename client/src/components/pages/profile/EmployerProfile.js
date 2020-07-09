@@ -43,14 +43,14 @@ const EmployerProfile = ({
               <Link
                 to="/create-edit-employer-profile"
                 type="button"
-                class="btn btn-success mx-1 my-1"
+                class="btn btn-success btn-lg mx-1 my-1"
               >
                 {profile.companyName ? "edit" : "create"} profile
               </Link>
               <Link
                 to="/jobs/create-job"
                 type="button"
-                class="btn btn-success mx-1 my-1"
+                class="btn btn-success btn-lg mx-1 my-1"
               >
                 add new job
               </Link>
@@ -82,13 +82,11 @@ const EmployerProfile = ({
             <div className="col-sm-4">
               <div className="profile-wrapper mr-1">
                 <div className="padd-2" style={{ fontSize: "1.1rem" }}>
-                  <p>year founded : jkhfsdfg{profile.yearFounded}</p>
+                  <p>year founded : {profile.yearFounded}</p>
                   <hr />
-                  <p>website : 46454{profile.website}</p>
+                  <p>website : {profile.website}</p>
                   <hr />
-                  <p>
-                    number of employees : full time{profile.numberOfEmployees}
-                  </p>
+                  <p>number of employees : {profile.numberEmployees}</p>
                 </div>
               </div>
             </div>

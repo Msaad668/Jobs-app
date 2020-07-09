@@ -127,7 +127,7 @@ const CreateEmployerProfileForm = ({
           <div className="form-group">
             <label for="exampleInputPassword1">number of employees*</label>
             <input
-              type="number"
+              type="text"
               class="form-control"
               placeholder="number of employees"
               name="numberEmployees"

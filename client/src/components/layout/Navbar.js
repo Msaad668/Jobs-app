@@ -21,6 +21,11 @@ const Navbar = ({ auth: { isAuthenticated, loading, isEmployer }, logout }) => {
         </Link>
       </li>
       <li class="nav-item">
+        <Link class="nav-link" to="/jobs/create-job">
+          add job
+        </Link>
+      </li>
+      <li class="nav-item">
         <Link class="nav-link" to="/jobs">
           all jobs
         </Link>
@@ -53,7 +58,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, isEmployer }, logout }) => {
         </Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to="/add-job">
+        <Link class="nav-link" to="/my-applications">
           applications
         </Link>
       </li>

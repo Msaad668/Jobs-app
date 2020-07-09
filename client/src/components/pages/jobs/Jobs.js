@@ -21,7 +21,7 @@ const Jobs = ({
 
   return (
     <div class="jobs">
-      <div class="container p-1">
+      <div class="container padd-1">
         <h2 class="my-4 " style={{ textAlign: "center" }}>
           Explore new opportunities
         </h2>

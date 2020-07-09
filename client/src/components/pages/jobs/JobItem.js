@@ -5,8 +5,8 @@ const JobItem = ({
   job: { _id, title, employerName, description, company },
 }) => {
   return (
-    <div className="job-card">
-      <div className="p-3">
+    <div className="profile-wrapper w-75 mx-auto my-3">
+      <div className="p-2">
         <h4 className=" ">
           <Link
             to={`/job/${_id}`}
@@ -26,7 +26,7 @@ const JobItem = ({
           </Link>{" "}
           - cairo, egypt
         </h5>
-        <p className="">{description}</p>
+        <p>{description.split(" ").slice(0, 15).join(" ")} ...</p>
       </div>
     </div>
   );

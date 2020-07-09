@@ -69,7 +69,8 @@ const Job = ({
                       style={{ fontSize: "1.1rem", maxWidth: "16rem" }}
                     >
                       <p>
-                        115 applicants for {job.numberOfVacancies} open{" "}
+                        {job.applications.length} applicants for{" "}
+                        {job.numberOfVacancies} open{" "}
                         {job.numberOfVacancies > 1 ? "positions" : "position"}{" "}
                       </p>
                     </div>
