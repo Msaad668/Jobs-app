@@ -122,8 +122,8 @@ const AddEducation = ({ addEducation, history }) => {
               onChange={onChange}
             />
           </div>
-          <input type="submit" className="btn btn-primary my-1" />
-          <Link className="btn btn-success btn-lg my-1" to="/jobs">
+          <input type="submit" className="btn btn-primary btn-lg m-1" />
+          <Link className="btn btn-success btn-lg m-1" to="/jobs">
             Go Back
           </Link>
         </form>

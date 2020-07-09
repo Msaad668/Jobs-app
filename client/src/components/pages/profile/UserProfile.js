@@ -110,7 +110,9 @@ const UserProfile = ({
                   <Fragment>
                     {profile.education.map((education) => (
                       <div key={education._id}>
-                        <h3 className="text-dark">{education.school}</h3>
+                        <h3 style={{ color: "#0d56d9", opacity: ".7" }}>
+                          {education.school}
+                        </h3>
                         <p>
                           <Moment format="YYYY/MM/DD">
                             {moment.utc(education.from)}
@@ -156,7 +158,7 @@ const UserProfile = ({
                   <Fragment>
                     {profile.experience.map((experience) => (
                       <div key={experience._id}>
-                        <h3 style={{ color: "#0d56d9", opacity: ".6" }}>
+                        <h3 style={{ color: "#0d56d9", opacity: ".7" }}>
                           {experience.company}
                         </h3>
                         <p>

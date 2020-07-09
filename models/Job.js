@@ -23,6 +23,7 @@ const jobSchema = new Schema({
   },
   expNeeded: {
     type: String,
+    required: true,
   },
   jobType: {
     type: String,
@@ -30,12 +31,14 @@ const jobSchema = new Schema({
   },
   numberOfVacancies: {
     type: Number,
+    required: true,
   },
   salary: {
     type: String,
   },
   locationOfTheJob: {
     type: String,
+    required: true,
   },
 
   // skillsNeeded: {
