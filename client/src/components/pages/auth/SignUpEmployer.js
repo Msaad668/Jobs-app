@@ -55,6 +55,7 @@ const SignUpEmployer = ({ isAuthenticated, setAlert, registerEmployer }) => {
                 value={name}
                 onChange={onChange}
                 name="name"
+                required
               />
             </div>
             <div className="form-group ">
@@ -67,6 +68,7 @@ const SignUpEmployer = ({ isAuthenticated, setAlert, registerEmployer }) => {
                 value={email}
                 onChange={onChange}
                 name="email"
+                required
               />
               <small
                 id="emailHelp"
@@ -86,6 +88,7 @@ const SignUpEmployer = ({ isAuthenticated, setAlert, registerEmployer }) => {
                 value={password}
                 onChange={onChange}
                 name="password"
+                required
               />
             </div>
             <div className="form-group">
@@ -98,6 +101,7 @@ const SignUpEmployer = ({ isAuthenticated, setAlert, registerEmployer }) => {
                 value={password2}
                 onChange={onChange}
                 name="password2"
+                required
               />
             </div>
             <button

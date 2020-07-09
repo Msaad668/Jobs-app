@@ -37,7 +37,7 @@ const EmployerProfile = ({
       {!loading && profile !== null ? (
         <Fragment>
           <div className="profile-wrapper marginbottom-1 mr-1 ">
-            <h2 class="padd-1">welcome {user ? user.name : "hey"}</h2>
+            <h2 class="padd-1">welcome {user && user.name}</h2>
 
             <div class="links padd-1 ">
               <Link

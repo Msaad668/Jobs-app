@@ -18,7 +18,7 @@ const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
             <div className="col-sm-8">
               <div className="profile-wrapper my-2 mr-1">
                 <div className="padd-2" style={{ fontSize: "1.5rem" }}>
-                  <h3 class="py-1">company name: {profile.companyName}</h3>
+                  <p class="py-1"> {profile.companyName}</p>
                   <hr />
                   <p className="">location: {profile.location}</p>
                   <hr />
@@ -28,13 +28,13 @@ const CompanyInfo = ({ profile, getProfileById, loading, match }) => {
 
               <div className="profile-wrapper  my-1 mr-1">
                 <div className="padd-2">
-                  <h3>jobs published:</h3>
+                  <h2 class="mb-3">jobs published:</h2>
                   {profile.user.jobsPublished.map((job) => {
                     return (
                       <div
                         className="p-2 my-2"
                         style={{
-                          border: "1px solid black",
+                          border: "1px solid darkgray",
                           borderRadius: "1rem",
                         }}
                       >

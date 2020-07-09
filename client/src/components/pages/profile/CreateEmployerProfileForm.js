@@ -80,7 +80,7 @@ const CreateEmployerProfileForm = ({
         <hr />
         <form className="form" onSubmit={onSubmit}>
           <div className="form-group">
-            <label for="exampleInputPassword1">company name</label>
+            <label for="exampleInputPassword1">company name*</label>
             <input
               type="text"
               placeholder="Company name..."
@@ -88,6 +88,7 @@ const CreateEmployerProfileForm = ({
               value={companyName}
               onChange={onChange}
               class="form-control"
+              required
             />
             <small className="form-text">
               enter the company or the startup name
@@ -108,7 +109,7 @@ const CreateEmployerProfileForm = ({
             </small>
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">address</label>
+            <label for="exampleInputPassword1">address*</label>
             <input
               type="text"
               class="form-control"
@@ -116,6 +117,7 @@ const CreateEmployerProfileForm = ({
               name="location"
               value={location}
               onChange={onChange}
+              required
             />
             <small className="form-text">
               City and country suggested (eg. cairo, egypt)
@@ -123,7 +125,7 @@ const CreateEmployerProfileForm = ({
           </div>
 
           <div className="form-group">
-            <label for="exampleInputPassword1">number of employees</label>
+            <label for="exampleInputPassword1">number of employees*</label>
             <input
               type="number"
               class="form-control"
@@ -131,11 +133,12 @@ const CreateEmployerProfileForm = ({
               name="numberEmployees"
               value={numberEmployees}
               onChange={onChange}
+              required
             />
             <small className="form-text">eg. 51-100 || 1000-5001</small>
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">year founded</label>
+            <label for="exampleInputPassword1">year founded*</label>
             <input
               type="number"
               class="form-control"
@@ -143,17 +146,19 @@ const CreateEmployerProfileForm = ({
               name="yearFounded"
               value={yearFounded}
               onChange={onChange}
+              required
             />
             <small className="form-text">eg. 2009</small>
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">summary || bio</label>
+            <label for="exampleInputPassword1">summary || bio*</label>
             <textarea
               placeholder="A bio of the company..."
               class="form-control"
               name="bio"
               value={bio}
               onChange={onChange}
+              required
             />
             <small className="form-text">
               enter a summary of your company...

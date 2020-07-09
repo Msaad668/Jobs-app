@@ -69,7 +69,7 @@ const CreateUserProfileForm = ({
         className="container
       "
       >
-        <h1 className="large text-primary">create/Edit Your Profile</h1>
+        <h1 className="large text-primary">Create/Edit Your Profile</h1>
         <p className="lead">
           <i className="fas fa-user" /> Add some changes to your profile
         </p>
@@ -77,26 +77,28 @@ const CreateUserProfileForm = ({
         <hr />
         <form className="form" onSubmit={onSubmit}>
           <div className="form-group">
-            <label for="exampleInputPassword1">title</label>
+            <label for="exampleInputPassword1">title*</label>
             <input
               type="text"
               class="form-control"
-              placeholder=""
+              placeholder="title*"
               name="title"
               value={title}
               onChange={onChange}
+              required
             />
             <small className="form-text">eg. mechanical engineer</small>
           </div>
 
           <div className="form-group">
-            <label for="exampleInputPassword1">summary || bio</label>
+            <label for="exampleInputPassword1">summary || bio*</label>
             <textarea
-              placeholder="A bio of the company..."
+              placeholder="a little aboyt yourself*"
               class="form-control"
               name="bio"
               value={bio}
               onChange={onChange}
+              required
             />
             <small className="form-text">
               enter a summary of your company...
@@ -104,17 +106,18 @@ const CreateUserProfileForm = ({
           </div>
 
           <div className="form-group">
-            <label for="exampleInputPassword1">company name</label>
+            <label for="exampleInputPassword1">current company*</label>
             <input
               type="text"
-              placeholder="Company name..."
+              placeholder="your current company...*"
               name="companyName"
               value={companyName}
               onChange={onChange}
               class="form-control"
+              required
             />
             <small className="form-text">
-              enter the company or the startup name
+              enter your company or the startup name
             </small>
           </div>
           <div className="form-group">
@@ -132,7 +135,7 @@ const CreateUserProfileForm = ({
             </small>
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1">address</label>
+            <label for="exampleInputPassword1">address*</label>
             <input
               type="text"
               class="form-control"
@@ -140,6 +143,7 @@ const CreateUserProfileForm = ({
               name="location"
               value={location}
               onChange={onChange}
+              required
             />
             <small className="form-text">
               City and country suggested (eg. cairo, egypt)
@@ -147,7 +151,7 @@ const CreateUserProfileForm = ({
           </div>
 
           <div className="form-group">
-            <label for="exampleInputPassword1">skills</label>
+            <label for="exampleInputPassword1">skills*</label>
             <input
               type="text"
               class="form-control"
@@ -155,9 +159,11 @@ const CreateUserProfileForm = ({
               name="skills"
               value={skills}
               onChange={onChange}
+              required
             />
             <small className="form-text">
-              Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
+              Please use comma separated values (eg. HTML,CSS,JavaScript,PHP) -
+              add at least 1 skills
             </small>
           </div>
 
@@ -225,7 +231,7 @@ const CreateUserProfileForm = ({
           )}
 
           <input type="submit" className="btn btn-primary btn-lg m-1" />
-          <Link className="btn btn-success btn-lg m-1" to="/emp-profile">
+          <Link className="btn btn-success btn-lg m-1" to="/profile">
             Go Back
           </Link>
         </form>

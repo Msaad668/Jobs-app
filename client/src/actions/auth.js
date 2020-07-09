@@ -11,6 +11,7 @@ import {
 import { setAlert } from "./alert";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
+import { getCurrentProfile } from "./profile";
 
 // load user from token
 export const loadUser = () => async (dispatch) => {
@@ -120,6 +121,7 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     dispatch(loadUser());
+    dispatch(getCurrentProfile());
   } catch (err) {
     const errors = err.response.data.errors;
 

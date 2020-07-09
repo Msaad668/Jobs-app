@@ -40,6 +40,7 @@ const JobForm = ({ createJob, history }) => {
           inputs
         </p>
         <small>* = required field</small>
+        <hr />
         <form
           className="form"
           onSubmit={(e) => {
@@ -80,6 +81,7 @@ const JobForm = ({ createJob, history }) => {
               name="jobType"
               value={jobType}
               onChange={onChange}
+              required
             >
               <option>* select job type</option>
               <option value="full time">Full time</option>

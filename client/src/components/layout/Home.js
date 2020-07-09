@@ -12,22 +12,32 @@ const Home = () => {
 
           <p class="main3">
             Searching for vacancies and career opportunities? jobs portal helps{" "}
-            <br /> you in your job search.
+            <br /> you in your job search :)
           </p>
 
           <Link
             to="/jobs"
             type="button"
-            class="btn btn-secondary btn-lg btn-block search-button  "
-            style={{ maxWidth: "85vh", margin: "auto" }}
+            class="btn btn-secondary btn-lg btn-block search-button my-3 "
+            style={{
+              maxWidth: "85vh",
+              margin: "auto",
+              fontSize: "1.5rem",
+              borderRadius: "0",
+            }}
           >
-            SEE ALL JOBS
+            See All Jobs
           </Link>
           <Link
             to="/login"
             type="button"
             class="btn btn-primary btn-lg btn-block search-button my-3"
-            style={{ maxWidth: "85vh", margin: "auto" }}
+            style={{
+              maxWidth: "85vh",
+              margin: "auto",
+              fontSize: "1.5rem",
+              borderRadius: "0",
+            }}
           >
             login
           </Link>
@@ -35,15 +45,25 @@ const Home = () => {
             to="/signup/user"
             type="button"
             class="btn btn-primary btn-lg btn-block search-button my-3"
-            style={{ maxWidth: "85vh", margin: "auto" }}
+            style={{
+              maxWidth: "85vh",
+              margin: "auto",
+              fontSize: "1.5rem",
+              borderRadius: "0",
+            }}
           >
             sign up as a user
           </Link>
           <Link
             to="/signup/employer"
             type="button"
-            class="btn btn-success btn-lg btn-block search-button my-3"
-            style={{ maxWidth: "85vh", margin: "auto" }}
+            class="btn btn-primary btn-lg btn-block search-button my-3"
+            style={{
+              maxWidth: "85vh",
+              margin: "auto",
+              fontSize: "1.5rem",
+              borderRadius: "0",
+            }}
           >
             sign up as an employer
           </Link>
